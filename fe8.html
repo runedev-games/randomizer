@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>#5 Fire Emblem - Character Randomizer</title>
+    <title>#6 Fire Emblem - Character Randomizer</title>
 </head>
 <body>
 
@@ -283,8 +283,15 @@
                 chapter = unit.recruitmentEphraim;
             }
             else {
-                chapter =
-                    `${unit.recruitmentEirika} (Eirika) / ${unit.recruitmentEphraim} (Ephraim)`;
+                
+                if (unit.recruitmentEirika != unit.recruitmentEphraim) {
+                    chapter =
+                        `${unit.recruitmentEirika} (Eirika) / ${unit.recruitmentEphraim} (Ephraim)`;
+                }
+                else {
+                    chapter =
+                        `${unit.recruitmentEirika};
+                }
             }
 
             document.getElementById("result").innerHTML = `
