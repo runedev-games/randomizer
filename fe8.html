@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fire Emblem - Character Randomizer</title>
+</head>
+<body>
+
+    <button onclick="generateCharacter()">
+        Random Character
+    </button>
+
+<script>
+        const sacredStonesAll = [
+            {
+                name: "Seth", 
+                recruitmentEirika: "Prologue",
+                recruitmentEphraim: "Prologue",
+                startingClass: "Paladin",
+                automatic: "True",
+                promotions: "None",
+                
+            },
+            {
+                name: "Franz",
+                recruitmentEirika: "Chapter 1",
+                recruitmentEphraim: "Chapter 1",
+                startingClass: "Cavalier",
+                automatic: "True",
+                promotions: ["Paladin", "Great Knight"]
+            },
+            {
+                name: "Gilliam",
+                recruitmentEirika: "Chapter 1",
+                recruitmentEphraim: "Chapter 1",
+                startingClass: "Knight",
+                automatic: "True",
+                promotions: ["General", "Great Knight"]
+            },
+            {
+                name: "Vanessa",
+                recruitmentEirika: "Pre-Chapter 2",
+                recruitmentEphraim: "Pre-Chapter 2",
+                startingClass: "Pegasus Knight",
+                automatic: "True",
+                promotions: ["Falcoknight", "Wyvern Knight"]
+            },
+            {
+                name: "Moulder",
+                recruitmentEirika: "Pre-Chapter 2",
+                recruitmentEphraim: "Pre-Chapter 2",
+                startingClass: "Priest",
+                automatic: "True",
+                promotions: ["Bishop", "Sage"]
+            },
+            {
+                name: "Ross",
+                recruitmentEirika: "Chapter 2",
+                recruitmentEphraim: "Chapter 2",
+                startingClass: "Journeyman",
+                automatic: "False",
+                promotions: ["Warrior", "Berserker", "Hero"]
+            },
+            {
+                name: "Garcia",
+                recruitmentEirika: "Chapter 2",
+                recruitmentEphraim: "Chapter 2",
+                startingClass: "Fighter",
+                automatic: "False",
+                promotions: ["Warrior", "Hero"]
+            },
+            {
+                name: "Neimi",
+                recruitmentEirika: "Chapter 3",
+                recruitmentEphraim: "Chapter 3",
+                startingClass: "Archer",
+                automatic: "True",
+                promotions: ["Sniper", "Bow Knight"]
+            },
+            {
+                name: "Colm",
+                recruitmentEirika: "Chapter 3",
+                recruitmentEphraim: "Chapter 3",
+                startingClass: "Thief",
+                automatic: "False",
+                promotions: ["Rogue", "Assassin"]
+            },
+            {
+                name: "Artur",
+                recruitmentEirika: "Chapter 4",
+                recruitmentEphraim: "Chapter 4",
+                startingClass: "Monk",
+                automatic: "True",
+                promotions: ["Bishop", "Sage"]
+            },
+            {
+                name: "Lute",
+                recruitmentEirika: "Chapter 4",
+                recruitmentEphraim: "Chapter 4",
+                startingClass: "Mage",
+                automatic: "False",
+                promotions: ["Sage", "Mage Knight"]
+            },
+            {
+                name: "Natasha",
+                recruitmentEirika: "Chapter 5",
+                recruitmentEphraim: "Chapter 5",
+                startingClass: "Cleric",
+                automatic: "True",
+                promotions: ["Bishop", "Valkyrie"]
+            },
+            {
+                name: "Joshua",
+                recruitmentEirika: "Chapter 5",
+                recruitmentEphraim: "Chapter 5",
+                startingClass: "Myrmidon",
+                automatic: "False",
+                promotions: ["Swordmaster", "Assassin"]
+            },
+            {
+                name: "Forde",
+                recruitmentEirika: "Chapter 5x",
+                recruitmentEphraim: "Chapter 5x",
+                startingClass: "Cavalier",
+                automatic: "True",
+                promotions: ["Paladin", "Great Knight"]
+            },
+            {
+                name: "Kyle",
+                recruitmentEirika: "Chapter 5x",
+                recruitmentEphraim: "Chapter 5x",
+                startingClass: "Cavalier",
+                automatic: "True",
+                promotions: ["Paladin", "Great Knight"]
+            },
+            {
+                name: "Tana",
+                recruitmentEirika: "Chapter 9",
+                recruitmentEphraim: "Chapter 9",
+                startingClass: "Pegasus Knight",
+                automatic: "True",
+                promotions: ["Falcoknight", "Wyvern Knight"]
+            },
+            {
+                name: "Amelia",
+                recruitmentEirika: "Chapter 9 / 13",
+                recruitmentEphraim: "Chapter 9",
+                startingClass: "Recruit",
+                automatic: "False",
+                promotions: ["General", "Paladin", "Great Knight"]
+            }
+        ];
+
+          function generateCharacter() {
+            const randomIndex =
+                Math.floor(Math.random() * sacredStones.length);
+
+            const unit = sacredStones[randomIndex];
+
+            document.getElementById("result").innerHTML =
+                `
+                <strong>${unit.name}</strong><br>
+                Chapter: ${unit.recruitmentChapter}<br>
+                Class: ${unit.startingClass}
+                `;
+        }
+    </script>
+
+  </body>
+</html>
