@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>#15 Fire Emblem - Army Randomizer</title>
+    <title>#16 Fire Emblem - Army Randomizer</title>
 </head>
 <body>
     
@@ -311,53 +311,56 @@
             
         ];
 
-          function generateCharacter() {
+        function generateCharacter() {
+            const route = document.getElementById("routeSelect").value;
 
-            let route = document.getElementById("routeSelect").value;
+            let actualRoute = route;
             let routeText = "";
-              
-            const randomIndex =
-                Math.floor(Math.random() * sacredStonesAll.length);
-
-            const unit = sacredStonesAll[randomIndex];
-        
-            let chapter;
 
             if (route === "randoRoute") {
-                route = Math.random() < 0.5 ? "eirikaRoute" : "ephraimRoute";
-
+                actualRoute = Math.random() < 0.5 ? "eirikaRoute" : "ephraimRoute";
                 routeText =
-                route === "eirikaRoute"
-                    ? "Randomized Route: Eirika"
-                    : "Randomized Route: Ephraim";
+                    actualRoute === "eirikaRoute"
+                        ? "Randomized Route: Eirika"
+                        : "Randomized Route: Ephraim";
             }
-              
-              
-            if (route === "eirikaRoute") {
-                chapter = unit.recruitmentEirika;
+
+            // shuffle array using the Fisher-Yates method.
+            const pool = [...sacredStonesAll];
+
+            for (let i = pool.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [pool[i], pool[j]] = [pool[j], pool[i]];
             }
-            else if (route === "ephraimRoute") {
-                chapter = unit.recruitmentEphraim;
-            }
-            else {
-                
-                if (unit.recruitmentEirika != unit.recruitmentEphraim) {
+
+            // take 10 unique characters
+            const selected = pool.slice(0, 10);
+
+            const output = selected.map(unit => {
+                let chapter;
+
+                if (actualRoute === "eirikaRoute") {
+                    chapter = unit.recruitmentEirika;
+                } else if (actualRoute === "ephraimRoute") {
+                    chapter = unit.recruitmentEphraim;
+                } else {
                     chapter =
-                        `${unit.recruitmentEirika} (Eirika) / ${unit.recruitmentEphraim} (Ephraim)`;
+                        unit.recruitmentEirika !== unit.recruitmentEphraim
+                            ? `${unit.recruitmentEirika} (Eirika) / ${unit.recruitmentEphraim} (Ephraim)`
+                            : unit.recruitmentEirika;
                 }
-                else {
-                    chapter =
-                        `${unit.recruitmentEirika}`;
-                }
-            }
+
+                return `
+                    <strong>${unit.name}</strong><br>
+                    - Recruited In: ${chapter}<br>
+                    - Starting Class: ${unit.startingClass}<br><br>
+                `;
+            }).join("");
 
             document.getElementById("result").innerHTML = `
                 ${routeText ? `<strong>${routeText}</strong><br><br>` : ""}
-                <strong>${unit.name}</strong><br>
-                - Recruited In: ${chapter}<br>
-                - Starting Class: ${unit.startingClass}
+                ${output}
             `;
-
         }
 
         function generatePools() {
