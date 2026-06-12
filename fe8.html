@@ -266,26 +266,33 @@
         ];
 
           function generateCharacter() {
+              
             let route = "Hablablabliblablahblah";
+              
             const randomIndex =
                 Math.floor(Math.random() * sacredStonesAll.length);
 
             const unit = sacredStonesAll[randomIndex];
+        
+            let chapter;
 
-            document.getElementById("result").innerHTML =
-                `
+            if (route === "Eirika") {
+                chapter = unit.recruitmentEirika;
+            }
+            else if (route === "Ephraim") {
+                chapter = unit.recruitmentEphraim;
+            }
+            else {
+                chapter =
+                    `${unit.recruitmentEirika} (Eirika) / ${unit.recruitmentEphraim} (Ephraim)`;
+            }
+
+            document.getElementById("result").innerHTML = `
                 <strong>${unit.name}</strong><br>
-                if (route === "Eirika") {
-                  Recruited In: ${unit.recruitmentEirika}<br>
-                  Starting Class: ${unit.startingClass}
-                } else if (route === "Ephraim") {
-                  Recruited In: ${unit.recruitmentEphraim}<br>
-                  Starting Class: ${unit.startingClass}               
-                } else {
-                  Recruited In: ${unit.recruitmentEirika} (Eirika) / ${unit.recruitmentEphraim} (Ephraim)<br>
-                  Starting Class: ${unit.startingClass}
-                }
-                `;
+                Recruited In: ${chapter}<br>
+                Starting Class: ${unit.startingClass}
+            `;
+
         }
     </script>
 
