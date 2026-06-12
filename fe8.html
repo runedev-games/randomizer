@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>#14 Fire Emblem - Army Randomizer</title>
+    <title>#15 Fire Emblem - Army Randomizer</title>
 </head>
 <body>
     
@@ -313,7 +313,8 @@
 
           function generateCharacter() {
 
-            const route = document.getElementById("routeSelect").value;
+            let route = document.getElementById("routeSelect").value;
+            let routeText = "";
               
             const randomIndex =
                 Math.floor(Math.random() * sacredStonesAll.length);
@@ -323,19 +324,12 @@
             let chapter;
 
             if (route === "randoRoute") {
-                const randomRoute = Math.floor(Math.random() * 2);
+                route = Math.random() < 0.5 ? "eirikaRoute" : "ephraimRoute";
 
-                if (randomRoute === 0) {
-                    route = "eirikaRoute";
-                    const routeText = "Randomized Route: Eirika";
-                } else {
-                    route = "ephraimRoute";
-                    const routeText = "Randomized Route: Ephraim";
-                }
-
-                document.getElementById("result").innerHTML += `
-                    <br><strong>${routeText}</strong><br>
-                `;
+                routeText =
+                route === "eirikaRoute"
+                    ? "Randomized Route: Eirika"
+                    : "Randomized Route: Ephraim";
             }
               
               
@@ -358,6 +352,7 @@
             }
 
             document.getElementById("result").innerHTML = `
+                ${routeText ? `<strong>${routeText}</strong><br><br>` : ""}
                 <strong>${unit.name}</strong><br>
                 - Recruited In: ${chapter}<br>
                 - Starting Class: ${unit.startingClass}
