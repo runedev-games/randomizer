@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>#9 Fire Emblem - Character Randomizer</title>
+    <title>#10 Fire Emblem - Character Randomizer</title>
 </head>
 <body>
     
@@ -12,6 +12,8 @@
         <option value="ephraimRoute">Ephraim Route</option>
         <option value="randoRoute">Randomize Route</option>
     </select>
+
+    <br><br>
     
     <button onclick="generateCharacter()">
         Random Character
@@ -28,6 +30,7 @@
                 startingClass: "Paladin",
                 automatic: "True",
                 promotions: "None",
+                tags: ["SwordPool, SwordPoolRec, LancePool, LancePoolRec"],
                 
             },
             {
@@ -36,7 +39,8 @@
                 recruitmentEphraim: "Chapter 1",
                 startingClass: "Cavalier",
                 automatic: "True",
-                promotions: ["Paladin", "Great Knight"]
+                promotions: ["Paladin", "Great Knight"],
+                tags: ["SwordPool, SwordPoolRec, AxePool, LancePool, LancePoolRec"],
             },
             {
                 name: "Gilliam",
@@ -44,7 +48,9 @@
                 recruitmentEphraim: "Chapter 1",
                 startingClass: "Knight",
                 automatic: "True",
-                promotions: ["General", "Great Knight"]
+                promotions: ["General", "Great Knight"],
+                tags: ["SwordPool, AxePool, LancePool, LancePoolRec"],
+                
             },
             {
                 name: "Vanessa",
@@ -52,7 +58,8 @@
                 recruitmentEphraim: "Pre-Chapter 2",
                 startingClass: "Pegasus Knight",
                 automatic: "True",
-                promotions: ["Falcoknight", "Wyvern Knight"]
+                promotions: ["Falcoknight", "Wyvern Knight"],
+                tags: ["SwordPool, LancePool, LancePoolRec"],
             },
             {
                 name: "Moulder",
@@ -60,7 +67,8 @@
                 recruitmentEphraim: "Pre-Chapter 2",
                 startingClass: "Priest",
                 automatic: "True",
-                promotions: ["Bishop", "Sage"]
+                promotions: ["Bishop", "Sage"],
+                tags: ["AnimaPool, LightPool, StaffPool, StaffPoolRec"],
             },
             {
                 name: "Ross",
@@ -68,7 +76,8 @@
                 recruitmentEphraim: "Chapter 2",
                 startingClass: "Journeyman",
                 automatic: "False",
-                promotions: ["Warrior", "Berserker", "Hero"]
+                promotions: ["Warrior", "Berserker", "Hero"],
+                tags: ["SwordPool, AxePool, AxePoolRec, BowPool"],
             },
             {
                 name: "Garcia",
@@ -76,7 +85,8 @@
                 recruitmentEphraim: "Chapter 2",
                 startingClass: "Fighter",
                 automatic: "False",
-                promotions: ["Warrior", "Hero"]
+                promotions: ["Warrior", "Hero"],
+                tags: ["SwordPool, AxePool, AxePoolRec, BowPool"],
             },
             {
                 name: "Neimi",
@@ -84,7 +94,8 @@
                 recruitmentEphraim: "Chapter 3",
                 startingClass: "Archer",
                 automatic: "True",
-                promotions: ["Sniper", "Ranger"]
+                promotions: ["Sniper", "Ranger"],
+                tags: ["SwordPool, BowPool, BowPoolRec"],
             },
             {
                 name: "Colm",
@@ -92,7 +103,8 @@
                 recruitmentEphraim: "Chapter 3",
                 startingClass: "Thief",
                 automatic: "False",
-                promotions: ["Rogue", "Assassin"]
+                promotions: ["Rogue", "Assassin"],
+                tags: ["SwordPool, SwordPoolRec"],
             },
             {
                 name: "Artur",
@@ -100,7 +112,8 @@
                 recruitmentEphraim: "Chapter 4",
                 startingClass: "Monk",
                 automatic: "True",
-                promotions: ["Bishop", "Sage"]
+                promotions: ["Bishop", "Sage"],
+                tags: ["AnimaPool, LightPool, LightPoolRec, StaffPool"],
             },
             {
                 name: "Lute",
@@ -108,7 +121,8 @@
                 recruitmentEphraim: "Chapter 4",
                 startingClass: "Mage",
                 automatic: "False",
-                promotions: ["Sage", "Mage Knight"]
+                promotions: ["Sage", "Mage Knight"],
+                tags: ["AnimaPool, AnimaPoolRec, LightPool, StaffPool"],
             },
             {
                 name: "Natasha",
@@ -116,7 +130,8 @@
                 recruitmentEphraim: "Chapter 5",
                 startingClass: "Cleric",
                 automatic: "True",
-                promotions: ["Bishop", "Valkyrie"]
+                promotions: ["Bishop", "Valkyrie"],
+                tags: ["LightPool, StaffPool, StaffPoolRec"],
             },
             {
                 name: "Joshua",
@@ -124,7 +139,8 @@
                 recruitmentEphraim: "Chapter 5",
                 startingClass: "Myrmidon",
                 automatic: "False",
-                promotions: ["Swordmaster", "Assassin"]
+                promotions: ["Swordmaster", "Assassin"],
+                tags: ["SwordPool, SwordPoolRec"],
             },
             {
                 name: "Forde",
@@ -132,7 +148,8 @@
                 recruitmentEphraim: "Chapter 5x",
                 startingClass: "Cavalier",
                 automatic: "True",
-                promotions: ["Paladin", "Great Knight"]
+                promotions: ["Paladin", "Great Knight"],
+                tags: ["SwordPool, SwordPoolRec, AxePool, LancePool, LancePoolRec"],
             },
             {
                 name: "Kyle",
@@ -140,7 +157,8 @@
                 recruitmentEphraim: "Chapter 5x",
                 startingClass: "Cavalier",
                 automatic: "True",
-                promotions: ["Paladin", "Great Knight"]
+                promotions: ["Paladin", "Great Knight"],
+                tags: ["SwordPool, SwordPoolRec, AxePool, LancePool, LancePoolRec"],
             },
             {
                 name: "Tana",
@@ -148,7 +166,8 @@
                 recruitmentEphraim: "Chapter 9",
                 startingClass: "Pegasus Knight",
                 automatic: "True",
-                promotions: ["Falcoknight", "Wyvern Knight"]
+                promotions: ["Falcoknight", "Wyvern Knight"],
+                tags: ["SwordPool, LancePool, LancePoolRec"],
             },
             {
                 name: "Amelia",
@@ -156,7 +175,8 @@
                 recruitmentEphraim: "Chapter 9",
                 startingClass: "Recruit",
                 automatic: "False",
-                promotions: ["General", "Paladin", "Great Knight"]
+                promotions: ["General", "Paladin", "Great Knight"],
+                tags: ["SwordPool, AxePool, LancePool, LancePoolRec"],
             },
             {
                 name: "Innes",
@@ -165,6 +185,7 @@
                 startingClass: "Sniper",
                 automatic: "False",
                 promotions: "None",
+                tags: ["BowPool, BowPoolRec"],
             },
             {
                 name: "Gerik",
@@ -173,6 +194,7 @@
                 startingClass: "Mercenary",
                 automatic: "False",
                 promotions: ["Hero, Ranger"],
+                tags: ["SwordPool, SwordPoolRec, AxePool, BowPool"],
             },
             {
                 name: "Tethys",
@@ -189,6 +211,7 @@
                 startingClass: "Myrmidon",
                 automatic: "False",
                 promotions: ["Swordmaster, Assassin"],
+                tags: ["SwordPool, SwordPoolRec"],
             },
             {
                 name: "L'Arachel",
@@ -197,6 +220,7 @@
                 startingClass: "Troubadour",
                 automatic: "False",
                 promotions: ["Valkyrie, Mage Knight"],
+                tags: ["AnimaPool, LightPool, StaffPool, StaffPoolRec"],
             },
             {
                 name: "Dozla",
@@ -205,6 +229,7 @@
                 startingClass: "Berserker",
                 automatic: "False",
                 promotions: "None",
+                tags: ["AxePool, AxePoolRec"],
             },
             {
                 name: "Saleh",
@@ -213,6 +238,7 @@
                 startingClass: "Sage",
                 automatic: "True",
                 promotions: "None",
+                tags: ["AnimaPool, AnimaPoolRec, LightPool, LightPoolRec, StaffPool, StaffPoolRec"],
             },
             {
                 name: "Ewan",
@@ -221,6 +247,7 @@
                 startingClass: "Pupil",
                 automatic: "False",
                 promotions: ["Sage, Mage Knight, Druid, Summoner"],
+                tags: ["AnimaPool, AnimaPoolRec, LightPool, DarkPool, DarkPoolRec, StaffPool"],
             },
             {
                 name: "Cormag",
@@ -229,6 +256,7 @@
                 startingClass: "Wyvern Rider",
                 automatic: "False",
                 promotions: ["Wyvern Lord, Wyvern Knight"],
+                tags: ["SwordPool, LancePool, LancePoolRec"],
             },
             {
                 name: "Rennac",
@@ -237,6 +265,7 @@
                 startingClass: "Rogue",
                 automatic: "False",
                 promotions: "None",
+                tags: ["SwordPool, SwordPoolRec"],
             },
             {
                 name: "Duessel",
@@ -245,6 +274,7 @@
                 startingClass: "Great Knight",
                 automatic: "True",
                 promotions: "None",
+                tags: ["SwordPool, SwordPoolRec, AxePool, AxePoolRec, LancePool, LancePoolRec"],
             },
             {
                 name: "Knoll",
@@ -253,6 +283,7 @@
                 startingClass: "Shaman",
                 automatic: "True",
                 promotions: ["Druid, Summoner"],
+                tags: ["DarkPool, DarkPoolRec, StaffPool"],
             },
             {
                 name: "Myrrh",
@@ -269,6 +300,7 @@
                 startingClass: "Falcoknight",
                 automatic: "False",
                 promotions: "None",
+                tags: ["SwordPool, SwordPoolRec, LancePool, LancePoolRec"],
             }
             
         ];
@@ -308,6 +340,35 @@
                 - Starting Class: ${unit.startingClass}
             `;
 
+        }
+
+        function generatePools() {
+            const tags = [
+              "SwordPool", "SwordPoolRec",
+              "AxePool", "AxePoolRec",
+              "LancePool", "LancePoolRec",
+              "BowPool", "BowPoolRec",
+              "AnimaPool", "AnimaPoolRec",
+              "LightPool", "LightPoolRec",
+              "DarkPool", "DarkPoolRec",
+              "StaffPool", "StaffPoolRec"
+            ];
+
+            const output = document.getElementById("output");
+
+            tags.forEach(tag => {
+              const header = document.createElement("h3");
+              header.textContent = tag;
+              output.appendChild(header);
+
+              characters.forEach(char => {
+                if (char.tags.includes(tag)) {
+                  const line = document.createElement("div");
+                  line.textContent = char.name;
+                  output.appendChild(line);
+                }
+              });
+            });
         }
     </script>
 
