@@ -266,6 +266,7 @@
         ];
 
           function generateCharacter() {
+            let route = "Hablablabliblablahblah";
             const randomIndex =
                 Math.floor(Math.random() * sacredStonesAll.length);
 
@@ -274,8 +275,16 @@
             document.getElementById("result").innerHTML =
                 `
                 <strong>${unit.name}</strong><br>
-                Chapter: ${unit.recruitmentEirika}<br>
-                Class: ${unit.startingClass}
+                if (route === "Eirika") {
+                  Recruited In: ${unit.recruitmentEirika}<br>
+                  Starting Class: ${unit.startingClass}
+                } else if (route === "Ephraim") {
+                  Recruited In: ${unit.recruitmentEphraim}<br>
+                  Starting Class: ${unit.startingClass}               
+                } else {
+                  Recruited In: ${unit.recruitmentEirika} (Eirika) / ${unit.recruitmentEphraim} (Ephraim)<br>
+                  Starting Class: ${unit.startingClass}
+                }
                 `;
         }
     </script>
