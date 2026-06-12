@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>#13 Fire Emblem - Character Randomizer</title>
+    <title>#14 Fire Emblem - Army Randomizer</title>
 </head>
 <body>
     
@@ -322,6 +322,23 @@
         
             let chapter;
 
+            if (route === "randoRoute") {
+                const randomRoute = Math.floor(Math.random() * 2);
+
+                if (randomRoute === 0) {
+                    route = "eirikaRoute";
+                    const routeText = "Randomized Route: Eirika";
+                } else {
+                    route = "ephraimRoute";
+                    const routeText = "Randomized Route: Ephraim";
+                }
+
+                document.getElementById("result").innerHTML += `
+                    <br><strong>${routeText}</strong><br>
+                `;
+            }
+              
+              
             if (route === "eirikaRoute") {
                 chapter = unit.recruitmentEirika;
             }
@@ -361,7 +378,7 @@
           ];
 
           const output = document.getElementById("result");
-          output.innerHTML = ""; // 🔥 clears old output
+          output.innerHTML = ""; // removes all prior output
 
           tags.forEach(tag => {
             const header = document.createElement("h3");
