@@ -1,10 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>#7 Fire Emblem - Character Randomizer</title>
+    <title>#8 Fire Emblem - Character Randomizer</title>
 </head>
 <body>
-
+    
+    <label for="routeSelect">Choose Route:</label>
+    <select id="routeSelect">
+        <option value="allRoute">Any Route</option>
+        <option value="eirikaRoute">Eirika Route</option>
+        <option value="ephraimRoute">Ephraim Route</option>
+        <option value="randoRoute">Randomize Route</option>
+    </select>
+    
     <button onclick="generateCharacter()">
         Random Character
     </button>
@@ -266,8 +274,8 @@
         ];
 
           function generateCharacter() {
-              
-            let route = "Hablablabliblablahblah";
+
+            const route = document.getElementById("route").value;
               
             const randomIndex =
                 Math.floor(Math.random() * sacredStonesAll.length);
@@ -276,10 +284,10 @@
         
             let chapter;
 
-            if (route === "Eirika") {
+            if (route === "eirikaRoute") {
                 chapter = unit.recruitmentEirika;
             }
-            else if (route === "Ephraim") {
+            else if (route === "ephraimRoute") {
                 chapter = unit.recruitmentEphraim;
             }
             else {
@@ -296,8 +304,8 @@
 
             document.getElementById("result").innerHTML = `
                 <strong>${unit.name}</strong><br>
-                Recruited In: ${chapter}<br>
-                Starting Class: ${unit.startingClass}
+                - Recruited In: ${chapter}<br>
+                - Starting Class: ${unit.startingClass}
             `;
 
         }
