@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>#12 Fire Emblem - Character Randomizer</title>
+    <title>#13 Fire Emblem - Character Randomizer</title>
 </head>
 <body>
     
@@ -349,32 +349,33 @@
         }
 
         function generatePools() {
-            const tags = [
-              "SwordPool", "SwordPoolRec",
-              "AxePool", "AxePoolRec",
-              "LancePool", "LancePoolRec",
-              "BowPool", "BowPoolRec",
-              "AnimaPool", "AnimaPoolRec",
-              "LightPool", "LightPoolRec",
-              "DarkPool", "DarkPoolRec",
-              "StaffPool", "StaffPoolRec"
-            ];
+          const tags = [
+            "SwordPool", "SwordPoolRec",
+            "AxePool", "AxePoolRec",
+            "LancePool", "LancePoolRec",
+            "BowPool", "BowPoolRec",
+            "AnimaPool", "AnimaPoolRec",
+            "LightPool", "LightPoolRec",
+            "DarkPool", "DarkPoolRec",
+            "StaffPool", "StaffPoolRec"
+          ];
 
-            const output = document.getElementById("result");
+          const output = document.getElementById("result");
+          output.innerHTML = ""; // 🔥 clears old output
 
-            tags.forEach(tag => {
-              const header = document.createElement("h3");
-              header.textContent = tag;
-              output.appendChild(header);
+          tags.forEach(tag => {
+            const header = document.createElement("h3");
+            header.textContent = tag;
+            output.appendChild(header);
 
-              sacredStonesAll.forEach(char => {
-                if (char.tags.includes(tag)) {
-                  const line = document.createElement("div");
-                  line.textContent = char.name;
-                  output.appendChild(line);
-                }
-              });
+            sacredStonesAll.forEach(char => {
+              if (char.tags && char.tags.includes(tag)) {
+                const line = document.createElement("div");
+                line.textContent = char.name;
+                output.appendChild(line);
+              }
             });
+          });
         }
     </script>
 
