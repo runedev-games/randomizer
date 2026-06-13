@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>#19 Fire Emblem - Army Randomizer</title>
+    <title>#20 Fire Emblem - Army Randomizer</title>
 </head>
 <body>
     
@@ -406,6 +406,9 @@
 
             let actualRoute = route;
             let routeText = "";
+            const excludeSeth =
+                document.getElementById("excludeSeth").checked;
+            
 
             if (route === "randoRoute") {
                 actualRoute = Math.random() < 0.5 ? "eirikaRoute" : "ephraimRoute";
@@ -415,9 +418,19 @@
                         : "Randomized Route: Ephraim";
             }
 
-            // shuffle array using the Fisher-Yates method.
-            const pool = [...sacredStonesAll];
 
+            // shuffle array using the Fisher-Yates method.
+            let pool = [...sacredStonesAll];
+
+
+// Where all the filters should be going: Below this.
+            
+            if (excludeSeth) {
+                pool = pool.filter(
+                    unit => unit.name !== "Seth"
+                );
+            }
+            
             for (let i = pool.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
                 [pool[i], pool[j]] = [pool[j], pool[i]];
