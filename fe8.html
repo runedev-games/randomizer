@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>#20 Fire Emblem - Army Randomizer</title>
+    <title>#21 Fire Emblem - Army Randomizer</title>
 </head>
 <body>
     
@@ -406,6 +406,8 @@
 
             let actualRoute = route;
             let routeText = "";
+            const unpromotedOnly =
+                document.getElementById("unpromotedOnly").checked;
             const excludeSeth =
                 document.getElementById("excludeSeth").checked;
             
@@ -424,6 +426,11 @@
 
 
 // Where all the filters should be going: Below this.
+            if (unpromotedOnly) {
+                pool = pool.filter(
+                    unit => unit.promotions !== "None"
+                );
+            }
             
             if (excludeSeth) {
                 pool = pool.filter(
