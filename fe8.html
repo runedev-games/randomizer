@@ -1,7 +1,7 @@
     <!DOCTYPE html>
 <html>
 <head>
-    <title>#25 Fire Emblem: The Sacred Stones - Army Randomizer</title>
+    <title>#26 Fire Emblem: The Sacred Stones - Army Randomizer</title>
 </head>
 <body>
     
@@ -401,6 +401,17 @@
             
         ];
 
+        const legendaryPools = [
+            { tag: "SwordPool", weapon: "Audhulma" },
+            { tag: "AxePool", weapon: "Garm" },
+            { tag: "LancePool", weapon: "Vidofnir" },
+            { tag: "BowPool", weapon: "Nidhogg" },
+            { tag: "AnimaPool", weapon: "Excalibur" },
+            { tag: "LightPool", weapon: "Ivaldi" },
+            { tag: "DarkPool", weapon: "Gleipnir" },
+            { tag: "StaffPool", weapon: "Latona" }
+        ];
+
 
 
         function generateCharacter() {
@@ -412,6 +423,8 @@
                 document.getElementById("unpromotedOnly").checked;
             const excludeSeth =
                 document.getElementById("excludeSeth").checked;
+            const guaranteeLegends =
+                document.getElementById("guaranteeLegends").checked;
             
 
             if (route === "randoRoute") {
@@ -447,7 +460,49 @@
 
            
              // take 10 unique characters
-            let selected = pool.slice(0, 10);
+            let selected = [];
+
+            if (guaranteeLegends) {
+
+                // One unit from each legendary pool
+                legendaryPools.forEach(poolInfo => {
+
+                    const candidates = pool.filter(unit =>
+                        unit.tags &&
+                        unit.tags.includes(poolInfo.tag) &&
+                        !selected.some(chosen => chosen.name === unit.name)
+                    );
+    
+                    if (candidates.length > 0) {
+                        const chosen =
+                            candidates[Math.floor(Math.random() * candidates.length)];
+
+                        // Remember which legendary weapon this unit represents
+                        chosen.legendaryWeapon = poolInfo.weapon;
+
+                        selected.push(chosen);
+                    }
+
+                });
+
+                // Fill remaining slots randomly
+                const remaining = pool.filter(unit =>
+                    !selected.some(chosen => chosen.name === unit.name)
+                );
+
+                for (let i = remaining.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [remaining[i], remaining[j]] = [remaining[j], remaining[i]];
+                }
+
+                selected.push(...remaining.slice(0, 10 - selected.length));
+
+            }
+            else {
+
+                selected = pool.slice(0, 10);
+
+            }
 
             if (actualRoute === "ephraimRoute") {
                 selected.sort((a, b) => a.ephraimOrder - b.ephraimOrder);
@@ -485,8 +540,15 @@
                     ? `${unit.name} (${displayedClass})`
                     : unit.name;
 
+
+
+                const legendaryText =
+                     guaranteeLegends && unit.legendaryWeapon
+                        ? ` - ${unit.legendaryWeapon}`
+                        : "";
+
                 return `
-                    <strong>${displayName}</strong><br>
+                    <strong>${displayName}${legendaryText}</strong>
                     - Recruited In: ${chapter}<br>
                     - Starting Class: ${unit.startingClass}<br><br>
                 `;
