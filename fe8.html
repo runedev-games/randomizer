@@ -1,7 +1,7 @@
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html>
 <head>
-    <title>#22 Fire Emblem: The Sacred Stones - Army Randomizer</title>
+    <title>#23 Fire Emblem: The Sacred Stones - Army Randomizer</title>
 </head>
 <body>
     
@@ -467,8 +467,20 @@
                             : unit.recruitmentEirika;
                 }
 
+                const randomizePromotions =
+                document.getElementById("randoPromotions").checked;
+
+                let displayedClass = unit.startingClass;
+
+                if (randomizePromotions) {
+                    if (Array.isArray(unit.promotions) && unit.promotions.length > 0) {
+                        displayedClass =
+                            unit.promotions[Math.floor(Math.random() * unit.promotions.length)];
+                    }
+                }
+
                 return `
-                    <strong>${unit.name}</strong><br>
+                    <strong>${unit.name} (${displayedClass})</strong><br>
                     - Recruited In: ${chapter}<br>
                     - Starting Class: ${unit.startingClass}<br><br>
                 `;
