@@ -1,7 +1,7 @@
     <!DOCTYPE html>
 <html>
 <head>
-    <title>#24 Fire Emblem: The Sacred Stones - Army Randomizer</title>
+    <title>#25 Fire Emblem: The Sacred Stones - Army Randomizer</title>
 </head>
 <body>
     
@@ -401,6 +401,8 @@
             
         ];
 
+
+
         function generateCharacter() {
             const route = document.getElementById("routeSelect").value;
 
@@ -479,8 +481,12 @@
                     }
                 }
 
+                const displayName = randomizePromotions
+                    ? `${unit.name} (${displayedClass})`
+                    : unit.name;
+
                 return `
-                    <strong>${unit.name} (${displayedClass})</strong><br>
+                    <strong>${displayName}</strong><br>
                     - Recruited In: ${chapter}<br>
                     - Starting Class: ${unit.startingClass}<br><br>
                 `;
