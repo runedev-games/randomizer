@@ -1,7 +1,7 @@
     <!DOCTYPE html>
 <html>
 <head>
-    <title>#27 Fire Emblem: The Sacred Stones - Army Randomizer</title>
+    <title>#28 Fire Emblem: The Sacred Stones - Army Randomizer</title>
 </head>
 <body>
     
@@ -474,13 +474,10 @@
                     );
     
                     if (candidates.length > 0) {
-                        const chosen =
-                            candidates[Math.floor(Math.random() * candidates.length)];
-
-                        // Remember which legendary weapon this unit represents
-                        if (selected.length === 0) {
-                            chosen.legendaryWeapon = poolInfo.weapon;
-                        }
+                        const chosen = {
+                            ...candidates[Math.floor(Math.random() * candidates.length)],
+                            legendaryWeapon: poolInfo.weapon
+                        };
 
                         selected.push(chosen);
                     }
