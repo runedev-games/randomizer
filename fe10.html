@@ -308,25 +308,11 @@
 
             }
 
-            if (actualRoute === "ephraimRoute") {
-                selected.sort((a, b) => a.ephraimOrder - b.ephraimOrder);
-            } else {
-                selected.sort((a, b) => a.eirikaOrder - b.eirikaOrder);
-            }
+            // Sort selected units by their recruitment order
+            selected.sort((a, b) => a.recruitOrder - b.recruitOrder);
 
             const output = selected.map(unit => {
-                let chapter;
-
-                if (actualRoute === "eirikaRoute") {
-                    chapter = unit.recruitmentEirika;
-                } else if (actualRoute === "ephraimRoute") {
-                    chapter = unit.recruitmentEphraim;
-                } else {
-                    chapter =
-                        unit.recruitmentEirika !== unit.recruitmentEphraim
-                            ? `${unit.recruitmentEirika} (Eirika) / ${unit.recruitmentEphraim} (Ephraim)`
-                            : unit.recruitmentEirika;
-                }
+                const chapter = unit.recruitment;
 
                 const randomizePromotions =
                 document.getElementById("randoPromotions").checked;
