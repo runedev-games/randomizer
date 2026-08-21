@@ -1,1 +1,356 @@
+    <!DOCTYPE html>
+<html>
+<head>
+    <title>#1 Fire Emblem:Radiant Dawn - Army Randomizer</title>
+</head>
+<body>
+    
+    <label for="routeSelect">Choose Route:</label>
+    <select id="routeSelect">
+        <option value="allRoute">Any Route</option>
+        <option value="eirikaRoute">Eirika Route</option>
+        <option value="ephraimRoute">Ephraim Route</option>
+        <option value="randoRoute">Randomize Route</option>
+    </select>
 
+    <br><br>
+
+    <label>
+    <input type="checkbox" id="randoPromotions">
+        Randomize Promotions?
+    </label>
+
+    <br><br>
+
+    <label>
+    <input type="checkbox" id="guaranteeLegends">
+        Guarantee S-Rank / Legendary Weapon Users?
+    </label>
+
+    <br><br>
+
+    <label>
+    <input type="checkbox" id="unpromotedOnly">
+        Unpromoted Only?
+    </label>
+
+    <br><br>
+
+    <label>
+    <input type="checkbox" id="excludeSeth">
+        Exclude Seth?
+    </label>
+
+    <br><br>
+    
+    <button onclick="generateCharacter()">
+        Randomize Your Army!
+    </button>
+
+    <br><br>
+    
+    <button onclick="generatePools()">
+        Print Pools
+    </button>
+
+    <div id="result"></div>
+
+<script>
+        const sacredStonesAll = [
+            {
+                name: "Edward", 
+                recruitment: "1-Prologue",
+                recruitOrder: 1.0,
+                startingClass: "Myrmidon",
+                automatic: "True",
+                promotions: "Swordmaster -> Trueblade",
+                tags: ["SwordPool", "SwordPoolRec"],
+                
+            },
+            {
+                name: "Leonardo", 
+                recruitment: "1-Prologue",
+                recruitOrder: 1.0,
+                startingClass: "Archer",
+                automatic: "True",
+                promotions: "Sniper -> Marksman",
+                tags: ["SwordPool", "SwordPoolRec"],
+            },
+            {
+                name: "Nolan", 
+                recruitment: "1-1",
+                recruitOrder: 1.1,
+                startingClass: "Fighter",
+                automatic: "True",
+                promotions: "Warrior -> Reaver",
+                tags: ["SwordPool", "SwordPoolRec"],
+                
+            },
+            {
+                name: "Laura", 
+                recruitment: "1-2",
+                recruitOrder: 1.2,
+                startingClass: "Priest",
+                automatic: "True",
+                promotions: "Bishop -> Saint",
+                tags: ["SwordPool", "SwordPoolRec"],
+            },
+            {
+                name: "Ilyana", 
+                recruitment: "1-3",
+                recruitOrder: 1.3,
+                startingClass: "Thunder Mage",
+                automatic: "True",
+                promotions: "Thunder Sage -> Arch Sage",
+                tags: ["SwordPool", "SwordPoolRec"],
+            },
+            {
+                name: "Aran", 
+                recruitment: "1-3",
+                recruitOrder: 1.3,
+                startingClass: "Soldier",
+                automatic: "False",
+                promotions: "Halberdier -> Sentinel",
+                tags: ["SwordPool", "SwordPoolRec"],
+            },
+            {
+                name: "Meg", 
+                recruitment: "1-4",
+                recruitOrder: 1.4,
+                startingClass: "Armor Sword",
+                automatic: "True",
+                promotions: "Sword General -> Marshall",
+                tags: ["SwordPool", "SwordPoolRec"],
+            },
+            {
+                name: "Volug", 
+                recruitment: "1-5",
+                recruitOrder: 1.5,
+                startingClass: "Wolf",
+                automatic: "True",
+                promotions: "None",
+                tags: ["SwordPool", "SwordPoolRec"],
+            },
+            {
+                name: "Tauroneo", 
+                recruitment: "1-6",
+                recruitOrder: 1.6,
+                startingClass: "Lance General",
+                automatic: "True",
+                promotions: "Marshall",
+                tags: ["SwordPool", "SwordPoolRec"],
+            },
+            {
+                name: "Jill", 
+                recruitment: "1-6",
+                recruitOrder: 1.6,
+                startingClass: "Dracoknight",
+                automatic: "True",
+                promotions: "Dragonmaster -> Dragonlord",
+                tags: ["SwordPool", "SwordPoolRec"],
+            },
+            {
+                name: "Lute",
+                recruitmentEirika: "Chapter 4",
+                recruitmentEphraim: "Chapter 4",
+                eirikaOrder: 4.0,
+                ephraimOrder: 4.0,
+                startingClass: "Mage",
+                automatic: "False",
+                promotions: ["Sage", "Mage Knight"],
+                tags: ["AnimaPool", "AnimaPoolRec", "LightPool", "StaffPool"],
+            }
+            
+        ];
+
+        const legendaryPools = [
+            { tag: "SwordPoolRec", weapon: "Audhulma" },
+            { tag: "AxePoolRec", weapon: "Garm" },
+            { tag: "LancePoolRec", weapon: "Vidofnir" },
+            { tag: "BowPoolRec", weapon: "Nidhogg" },
+            { tag: "AnimaPoolRec", weapon: "Excalibur" },
+            { tag: "LightPoolRec", weapon: "Ivaldi" },
+            { tag: "DarkPoolRec", weapon: "Gleipnir" },
+            { tag: "StaffPoolRec", weapon: "Latona" }
+        ];
+
+
+
+        function generateCharacter() {
+            const route = document.getElementById("routeSelect").value;
+
+            let actualRoute = route;
+            let routeText = "";
+            const unpromotedOnly =
+                document.getElementById("unpromotedOnly").checked;
+            const excludeSeth =
+                document.getElementById("excludeSeth").checked;
+            const guaranteeLegends =
+                document.getElementById("guaranteeLegends").checked;
+            
+
+            if (route === "randoRoute") {
+                actualRoute = Math.random() < 0.5 ? "eirikaRoute" : "ephraimRoute";
+                routeText =
+                    actualRoute === "eirikaRoute"
+                        ? "Randomized Route: Eirika"
+                        : "Randomized Route: Ephraim";
+            }
+
+
+            // shuffle array using the Fisher-Yates method.
+            let pool = [...sacredStonesAll];
+
+
+// Where all the filters should be going: Below this.
+            if (unpromotedOnly) {
+                pool = pool.filter(
+                    unit => unit.promotions !== "None"
+                );
+            }
+            
+            if (excludeSeth) {
+                pool = pool.filter(
+                    unit => unit.name !== "Seth"
+                );
+            }
+            
+            for (let i = pool.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [pool[i], pool[j]] = [pool[j], pool[i]];
+            }
+
+           
+             // take 10 unique characters
+            let selected = [];
+
+            if (guaranteeLegends) {
+
+                // One unit from each legendary pool
+                legendaryPools.forEach(poolInfo => {
+
+                    const candidates = pool.filter(unit =>
+                        unit.tags &&
+                        unit.tags.includes(poolInfo.tag) &&
+                        !selected.some(chosen => chosen.name === unit.name)
+                    );
+    
+                    if (candidates.length > 0) {
+                        const chosen = {
+                            ...candidates[Math.floor(Math.random() * candidates.length)],
+                            legendaryWeapon: poolInfo.weapon
+                        };
+
+                        selected.push(chosen);
+                    }
+
+                });
+
+                // Fill remaining slots randomly
+                const remaining = pool.filter(unit =>
+                    !selected.some(chosen => chosen.name === unit.name)
+                );
+
+                for (let i = remaining.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [remaining[i], remaining[j]] = [remaining[j], remaining[i]];
+                }
+
+                selected.push(...remaining.slice(0, 10 - selected.length));
+
+            }
+            else {
+
+                selected = pool.slice(0, 10);
+
+            }
+
+            if (actualRoute === "ephraimRoute") {
+                selected.sort((a, b) => a.ephraimOrder - b.ephraimOrder);
+            } else {
+                selected.sort((a, b) => a.eirikaOrder - b.eirikaOrder);
+            }
+
+            const output = selected.map(unit => {
+                let chapter;
+
+                if (actualRoute === "eirikaRoute") {
+                    chapter = unit.recruitmentEirika;
+                } else if (actualRoute === "ephraimRoute") {
+                    chapter = unit.recruitmentEphraim;
+                } else {
+                    chapter =
+                        unit.recruitmentEirika !== unit.recruitmentEphraim
+                            ? `${unit.recruitmentEirika} (Eirika) / ${unit.recruitmentEphraim} (Ephraim)`
+                            : unit.recruitmentEirika;
+                }
+
+                const randomizePromotions =
+                document.getElementById("randoPromotions").checked;
+
+                let displayedClass = unit.startingClass;
+
+                if (randomizePromotions) {
+                    if (Array.isArray(unit.promotions) && unit.promotions.length > 0) {
+                        displayedClass =
+                            unit.promotions[Math.floor(Math.random() * unit.promotions.length)];
+                    }
+                }
+
+                const displayName = randomizePromotions
+                    ? `${unit.name} (${displayedClass})`
+                    : unit.name;
+
+
+
+                const legendaryText =
+                     guaranteeLegends && unit.legendaryWeapon
+                        ? ` - ${unit.legendaryWeapon}`
+                        : "";
+
+                return `
+                    <strong>${displayName}${legendaryText}</strong><br>
+                    - Recruited In: ${chapter}<br>
+                    - Starting Class: ${unit.startingClass}<br><br>
+                `;
+            }).join("");
+
+            document.getElementById("result").innerHTML = `
+                ${routeText ? `<strong>${routeText}</strong><br><br>` : ""}
+                ${output}
+            `;
+        }
+
+        function generatePools() {
+          const tags = [
+            "SwordPool", "SwordPoolRec",
+            "AxePool", "AxePoolRec",
+            "LancePool", "LancePoolRec",
+            "BowPool", "BowPoolRec",
+            "AnimaPool", "AnimaPoolRec",
+            "LightPool", "LightPoolRec",
+            "DarkPool", "DarkPoolRec",
+            "StaffPool", "StaffPoolRec"
+          ];
+
+          const output = document.getElementById("result");
+          output.innerHTML = ""; // removes all prior output
+
+          tags.forEach(tag => {
+            const header = document.createElement("h3");
+            header.textContent = tag;
+            output.appendChild(header);
+
+            sacredStonesAll.forEach(char => {
+              if (char.tags && char.tags.includes(tag)) {
+                const line = document.createElement("div");
+                line.textContent = char.name;
+                output.appendChild(line);
+              }
+            });
+          });
+        }
+    </script>
+
+  </body>
+</html>
