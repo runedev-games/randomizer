@@ -1,0 +1,790 @@
+    <!DOCTYPE html>
+<html>
+<head>
+    <title># Fire Emblem: Path of Radiance - Army Randomizer</title>
+</head>
+<body>
+    
+    <label for="routeSelect">Choose Route:</label>
+    <select id="routeSelect">
+        <option value="allRoute">Any Route</option>
+        <option value="eirikaRoute">Eirika Route</option>
+        <option value="ephraimRoute">Ephraim Route</option>
+        <option value="randoRoute">Randomize Route</option>
+    </select>
+
+    <br><br>
+
+    <label>
+    <input type="checkbox" id="randoPromotions">
+        Randomize Promotions?
+    </label>
+
+    <br><br>
+
+    <label>
+    <input type="checkbox" id="guaranteeLegends">
+        Guarantee S-Rank / Legendary Weapon Users?
+    </label>
+
+    <br><br>
+
+    <label>
+    <input type="checkbox" id="unpromotedOnly">
+        Unpromoted Only?
+    </label>
+
+    <br><br>
+
+    <label>
+    <input type="checkbox" id="excludeSeth">
+        Exclude Seth?
+    </label>
+
+    <br><br>
+    
+    <button onclick="generateCharacter()">
+        Randomize Your Army!
+    </button>
+
+    <br><br>
+    
+    <button onclick="generatePools()">
+        Print Pools
+    </button>
+
+    <div id="result"></div>
+
+<script>
+        const sacredStonesAll = [
+            {
+                name: "Edward", 
+                recruitment: "1-Prologue",
+                recruitOrder: 1.0,
+                startingClass: "Myrmidon",
+                automatic: "True",
+                promotions: "Swordmaster -> Trueblade",
+                tags: ["SwordPool", "SwordPoolRec"],
+                
+            },
+            {
+                name: "Leonardo", 
+                recruitment: "1-Prologue",
+                recruitOrder: 1.0,
+                startingClass: "Archer",
+                automatic: "True",
+                promotions: "Sniper -> Marksman",
+                tags: ["SwordPool", "SwordPoolRec"],
+            },
+            {
+                name: "Nolan", 
+                recruitment: "1-1",
+                recruitOrder: 1.1,
+                startingClass: "Fighter",
+                automatic: "True",
+                promotions: "Warrior -> Reaver",
+                tags: ["SwordPool", "SwordPoolRec"],
+                
+            },
+            {
+                name: "Laura", 
+                recruitment: "1-2",
+                recruitOrder: 1.2,
+                startingClass: "Priest",
+                automatic: "True",
+                promotions: "Bishop -> Saint",
+                tags: ["SwordPool", "SwordPoolRec"],
+            },
+            {
+                name: "Ilyana", 
+                recruitment: "1-3",
+                recruitOrder: 1.3,
+                startingClass: "Thunder Mage",
+                automatic: "True",
+                promotions: "Thunder Sage -> Arch Sage",
+                tags: ["SwordPool", "SwordPoolRec"],
+            },
+            {
+                name: "Aran", 
+                recruitment: "1-3",
+                recruitOrder: 1.3,
+                startingClass: "Soldier",
+                automatic: "False",
+                promotions: "Halberdier -> Sentinel",
+                tags: ["SwordPool", "SwordPoolRec"],
+            },
+            {
+                name: "Meg", 
+                recruitment: "1-4",
+                recruitOrder: 1.4,
+                startingClass: "Armor Sword",
+                automatic: "True",
+                promotions: "Sword General -> Marshall",
+                tags: ["SwordPool", "SwordPoolRec"],
+            },
+            {
+                name: "Volug", 
+                recruitment: "1-5",
+                recruitOrder: 1.5,
+                startingClass: "Wolf",
+                automatic: "True",
+                promotions: "None",
+                tags: ["SwordPool", "SwordPoolRec"],
+            },
+            {
+                name: "Tauroneo", 
+                recruitment: "1-6",
+                recruitOrder: 1.6,
+                startingClass: "Lance General",
+                automatic: "True",
+                promotions: "Marshall",
+                tags: ["SwordPool", "SwordPoolRec"],
+            },
+            {
+                name: "Jill", 
+                recruitment: "1-6",
+                recruitOrder: 1.6,
+                startingClass: "Dracoknight",
+                automatic: "True",
+                promotions: "Dragonmaster -> Dragonlord",
+                tags: ["SwordPool", "SwordPoolRec"],
+            },
+            {
+                name: "Zihark", 
+                recruitment: "1-6",
+                recruitOrder: 1.6,
+                startingClass: "Swordmaster",
+                automatic: "True",
+                promotions: "Trueblade",
+                tags: ["SwordPool", "SwordPoolRec"],
+            },
+            {
+                name: "Fiona", 
+                recruitment: "1-7",
+                recruitOrder: 1.7,
+                startingClass: "Lance Knight",
+                automatic: "True",
+                promotions: "Lance Paladin -> Silver Knight",
+                tags: ["SwordPool", "SwordPoolRec"],
+            },
+            {
+                name: "Tormod", 
+                recruitment: "1-7",
+                recruitOrder: 1.7,
+                startingClass: "Fire Sage",
+                automatic: "True",
+                promotions: "Arch Sage",
+                tags: ["SwordPool", "SwordPoolRec"],
+            },
+            {
+                name: "Muarim", 
+                recruitment: "1-7",
+                recruitOrder: 1.7,
+                startingClass: "Tiger",
+                automatic: "True",
+                promotions: "None",
+                tags: ["SwordPool", "SwordPoolRec"],
+            },
+            {
+                name: "Vika", 
+                recruitment: "1-7",
+                recruitOrder: 1.7,
+                startingClass: "Raven",
+                automatic: "True",
+                promotions: "None",
+                tags: ["SwordPool", "SwordPoolRec"],
+            },
+            {
+                name: "Nailah", 
+                recruitment: "1-8",
+                recruitOrder: 1.8,
+                startingClass: "Wolf Queen",
+                automatic: "True",
+                promotions: "None",
+                tags: ["SwordPool", "SwordPoolRec"],
+            },
+            {
+                name: "Elincia", 
+                recruitment: "2-Prologue",
+                recruitOrder: 2.0,
+                startingClass: "Queen",
+                automatic: "True",
+                promotions: "None",
+                tags: ["SwordPool", "SwordPoolRec"],
+            },
+            {
+                name: "Marcia", 
+                recruitment: "2-Prologue",
+                recruitOrder: 2.0,
+                startingClass: "Falconknight",
+                automatic: "True",
+                promotions: "Seraph Knight",
+                tags: ["SwordPool", "SwordPoolRec"],
+            },
+            {
+                name: "Nealuchi", 
+                recruitment: "2-Prologue",
+                recruitOrder: 2.0,
+                startingClass: "Raven",
+                automatic: "True",
+                promotions: "None",
+                tags: ["SwordPool", "SwordPoolRec"],
+            },
+            {
+                name: "Haar", 
+                recruitment: "2-Prologue",
+                recruitOrder: 2.0,
+                startingClass: "Dragonmaster",
+                automatic: "True",
+                promotions: "Dragonlord",
+                tags: ["SwordPool", "SwordPoolRec"],
+            },
+            {
+                name: "Brom", 
+                recruitment: "2-1",
+                recruitOrder: 2.1,
+                startingClass: "Axe General",
+                automatic: "True",
+                promotions: "Marshall",
+                tags: ["SwordPool", "SwordPoolRec"],
+            },
+            {
+                name: "Nephenee", 
+                recruitment: "2-1",
+                recruitOrder: 2.1,
+                startingClass: "Halberdier",
+                automatic: "True",
+                promotions: "Sentinel",
+                tags: ["SwordPool", "SwordPoolRec"],
+            },
+            {
+                name: "Heather", 
+                recruitment: "2-1",
+                recruitOrder: 2.1,
+                startingClass: "Rogue",
+                automatic: "True",
+                promotions: "Whisper",
+                tags: ["SwordPool", "SwordPoolRec"],
+            },
+            {
+                name: "Lucia", 
+                recruitment: "2-2",
+                recruitOrder: 2.2,
+                startingClass: "Swordmaster",
+                automatic: "True",
+                promotions: "Trueblade",
+                tags: ["SwordPool", "SwordPoolRec"],
+            },
+            {
+                name: "Lethe", 
+                recruitment: "2-2",
+                recruitOrder: 2.2,
+                startingClass: "Cat",
+                automatic: "True",
+                promotions: "None",
+                tags: ["SwordPool", "SwordPoolRec"],
+            },
+            {
+                name: "Mordecai", 
+                recruitment: "2-2",
+                recruitOrder: 2.2,
+                startingClass: "Tiger",
+                automatic: "True",
+                promotions: "None",
+                tags: ["SwordPool", "SwordPoolRec"],
+            },
+            {
+                name: "Geoffrey", 
+                recruitment: "2-3",
+                recruitOrder: 2.3,
+                startingClass: "Lance Paladin",
+                automatic: "True",
+                promotions: "Silver Knight",
+                tags: ["SwordPool", "SwordPoolRec"],
+            },
+            {
+                name: "Kieran", 
+                recruitment: "2-3",
+                recruitOrder: 2.3,
+                startingClass: "Axe Paladin",
+                automatic: "True",
+                promotions: "Gold Knight",
+                tags: ["SwordPool", "SwordPoolRec"],
+            },
+            {
+                name: "Astrid", 
+                recruitment: "2-3",
+                recruitOrder: 2.3,
+                startingClass: "Bow Paladin",
+                automatic: "True",
+                promotions: "Silver Knight",
+                tags: ["SwordPool", "SwordPoolRec"],
+            },
+            {
+                name: "Makalov", 
+                recruitment: "2-3",
+                recruitOrder: 2.3,
+                startingClass: "Sword Paladin",
+                automatic: "True",
+                promotions: "Gold Knight",
+                tags: ["SwordPool", "SwordPoolRec"],
+            },
+            {
+                name: "Danved", 
+                recruitment: "2-3",
+                recruitOrder: 2.3,
+                startingClass: "Halberdier",
+                automatic: "True",
+                promotions: "Sentinel",
+                tags: ["SwordPool", "SwordPoolRec"],
+            },
+            {
+                name: "Calill", 
+                recruitment: "2-Endgame",
+                recruitOrder: 2.4,
+                startingClass: "Fire Sage",
+                automatic: "True",
+                promotions: "Arch Sage",
+                tags: ["SwordPool", "SwordPoolRec"],
+            },
+            {
+                name: "Titania", 
+                recruitment: "3-Prologue",
+                recruitOrder: 3.0,
+                startingClass: "Axe Paladin",
+                automatic: "True",
+                promotions: "Gold Knight",
+                tags: ["SwordPool", "SwordPoolRec"],
+            },
+            {
+                name: "Soren", 
+                recruitment: "3-Prologue",
+                recruitOrder: 3.0,
+                startingClass: "Wind Sage",
+                automatic: "True",
+                promotions: "Arch Sage",
+                tags: ["SwordPool", "SwordPoolRec"],
+            },
+            {
+                name: "Mist", 
+                recruitment: "3-Prologue",
+                recruitOrder: 3.0,
+                startingClass: "Cleric",
+                automatic: "True",
+                promotions: "Valkyrie",
+                tags: ["SwordPool", "SwordPoolRec"],
+            },
+            {
+                name: "Rolf", 
+                recruitment: "3-Prologue",
+                recruitOrder: 3.0,
+                startingClass: "Sniper",
+                automatic: "True",
+                promotions: "Marksman",
+                tags: ["SwordPool", "SwordPoolRec"],
+            },
+            {
+                name: "Boyd", 
+                recruitment: "3-Prologue",
+                recruitOrder: 3.0,
+                startingClass: "Warrior",
+                automatic: "True",
+                promotions: "Reaver",
+                tags: ["SwordPool", "SwordPoolRec"],
+            },
+            {
+                name: "Oscar", 
+                recruitment: "3-Prologue",
+                recruitOrder: 3.0,
+                startingClass: "Lance Paladin",
+                automatic: "True",
+                promotions: "Silver Knight",
+                tags: ["SwordPool", "SwordPoolRec"],
+            },
+            {
+                name: "Shinon", 
+                recruitment: "3-Prologue",
+                recruitOrder: 3.0,
+                startingClass: "Sniper",
+                automatic: "True",
+                promotions: "Marksman",
+                tags: ["SwordPool", "SwordPoolRec"],
+            },
+            {
+                name: "Gatrie", 
+                recruitment: "3-Prologue",
+                recruitOrder: 3.0,
+                startingClass: "Lance General",
+                automatic: "True",
+                promotions: "Marshall",
+                tags: ["SwordPool", "SwordPoolRec"],
+            },
+            {
+                name: "Rhys", 
+                recruitment: "3-Prologue",
+                recruitOrder: 3.0,
+                startingClass: "Bishop",
+                automatic: "True",
+                promotions: "Saint",
+                tags: ["SwordPool", "SwordPoolRec"],
+            },
+            {
+                name: "Mia", 
+                recruitment: "3-Prologue",
+                recruitOrder: 3.0,
+                startingClass: "Swordmaster",
+                automatic: "True",
+                promotions: "Trueblade",
+                tags: ["SwordPool", "SwordPoolRec"],
+            },
+            {
+                name: "Ranulf", 
+                recruitment: "3-4",
+                recruitOrder: 3.4,
+                startingClass: "Cat",
+                automatic: "True",
+                promotions: "None",
+                tags: ["SwordPool", "SwordPoolRec"],
+            },
+            {
+                name: "Kyza", 
+                recruitment: "3-4",
+                recruitOrder: 3.4,
+                startingClass: "Tiger",
+                automatic: "True",
+                promotions: "None",
+                tags: ["SwordPool", "SwordPoolRec"],
+            },
+            {
+                name: "Lyre", 
+                recruitment: "3-4",
+                recruitOrder: 3.4,
+                startingClass: "Cat",
+                automatic: "True",
+                promotions: "None",
+                tags: ["SwordPool", "SwordPoolRec"],
+            },
+            {
+                name: "Janaff", 
+                recruitment: "3-7",
+                recruitOrder: 3.7,
+                startingClass: "Hawk",
+                automatic: "True",
+                promotions: "None",
+                tags: ["SwordPool", "SwordPoolRec"],
+            },
+            {
+                name: "Ulki", 
+                recruitment: "3-7",
+                recruitOrder: 3.7,
+                startingClass: "Hawk",
+                automatic: "True",
+                promotions: "None",
+                tags: ["SwordPool", "SwordPoolRec"],
+            },
+            {
+                name: "Sigrun", 
+                recruitment: "3-11",
+                recruitOrder: 3.8, // For order purposes, 3.8 must be here to follow 3.7
+                startingClass: "Falconknight",
+                automatic: "True",
+                promotions: "Seraph Knight",
+                tags: ["SwordPool", "SwordPoolRec"],
+            },
+            {
+                name: "Tanith", 
+                recruitment: "3-11",
+                recruitOrder: 3.8, // For order purposes, 3.8 must be here to follow 3.7
+                startingClass: "Falconknight",
+                automatic: "True",
+                promotions: "Seraph Knight",
+                tags: ["SwordPool", "SwordPoolRec"],
+            },
+            {
+                name: "Skrimir", 
+                recruitment: "4-Prologue",
+                recruitOrder: 4.0,
+                startingClass: "Lion",
+                automatic: "True",
+                promotions: "None",
+                tags: ["SwordPool", "SwordPoolRec"],
+            },
+            {
+                name: "Sanaki", 
+                recruitment: "4-Prologue",
+                recruitOrder: 4.0,
+                startingClass: "Empress",
+                automatic: "True",
+                promotions: "None",
+                tags: ["SwordPool", "SwordPoolRec"],
+            },
+            {
+                name: "Naesala", 
+                recruitment: "4-Prologue",
+                recruitOrder: 4.0,
+                startingClass: "Raven King",
+                automatic: "True",
+                promotions: "None",
+                tags: ["SwordPool", "SwordPoolRec"],
+            },
+            {
+                name: "Tibarn", 
+                recruitment: "4-2",
+                recruitOrder: 4.2,
+                startingClass: "Hawk King",
+                automatic: "True",
+                promotions: "None",
+                tags: ["SwordPool", "SwordPoolRec"],
+            },
+            {
+                name: "Pelleas", 
+                recruitment: "4-2",
+                recruitOrder: 4.2,
+                startingClass: "Dark Sage",
+                automatic: "True",
+                promotions: "Arch Sage",
+                tags: ["SwordPool", "SwordPoolRec"],
+            },
+            {
+                name: "Stefan", 
+                recruitment: "4-3",
+                recruitOrder: 4.3,
+                startingClass: "Trueblade",
+                automatic: "True",
+                promotions: "None",
+                tags: ["SwordPool", "SwordPoolRec"],
+            },
+            {
+                name: "Oliver", 
+                recruitment: "4-4",
+                recruitOrder: 4.4,
+                startingClass: "Saint",
+                automatic: "True",
+                promotions: "None",
+                tags: ["SwordPool", "SwordPoolRec"],
+            },
+            {
+                name: "Bastian", 
+                recruitment: "4-5",
+                recruitOrder: 4.5,
+                startingClass: "Arch Sage",
+                automatic: "True",
+                promotions: "None",
+                tags: ["SwordPool", "SwordPoolRec"],
+            },
+            {
+                name: "Volke", 
+                recruitment: "4-5",
+                recruitOrder: 4.5,
+                startingClass: "Assassin",
+                automatic: "True",
+                promotions: "None",
+                tags: ["SwordPool", "SwordPoolRec"],
+            },
+            {
+                name: "Caineghis", 
+                recruitment: "Before 4-Endgame (1)",
+                recruitOrder: 4.6,
+                startingClass: "Lion King",
+                automatic: "True",
+                promotions: "None",
+                tags: ["SwordPool", "SwordPoolRec"],
+            },
+            {
+                name: "Giffca", 
+                recruitment: "Before 4-Endgame (1)",
+                recruitOrder: 4.6,
+                startingClass: "Lion",
+                automatic: "True",
+                promotions: "None",
+                tags: ["SwordPool", "SwordPoolRec"],
+            },
+            {
+                name: "Renning", 
+                recruitment: "Before 4-Endgame (1)",
+                recruitOrder: 4.6,
+                startingClass: "Gold Knight",
+                automatic: "True",
+                promotions: "None",
+                tags: ["SwordPool", "SwordPoolRec"],
+            }
+            
+        ];
+
+        const legendaryPools = [
+            { tag: "SwordPoolRec", weapon: "Audhulma" },
+            { tag: "AxePoolRec", weapon: "Garm" },
+            { tag: "LancePoolRec", weapon: "Vidofnir" },
+            { tag: "BowPoolRec", weapon: "Nidhogg" },
+            { tag: "AnimaPoolRec", weapon: "Excalibur" },
+            { tag: "LightPoolRec", weapon: "Ivaldi" },
+            { tag: "DarkPoolRec", weapon: "Gleipnir" },
+            { tag: "StaffPoolRec", weapon: "Latona" }
+        ];
+
+
+
+        function generateCharacter() {
+            const route = document.getElementById("routeSelect").value;
+
+            let actualRoute = route;
+            let routeText = "";
+            const unpromotedOnly =
+                document.getElementById("unpromotedOnly").checked;
+            const excludeSeth =
+                document.getElementById("excludeSeth").checked;
+            const guaranteeLegends =
+                document.getElementById("guaranteeLegends").checked;
+            
+
+            if (route === "randoRoute") {
+                actualRoute = Math.random() < 0.5 ? "eirikaRoute" : "ephraimRoute";
+                routeText =
+                    actualRoute === "eirikaRoute"
+                        ? "Randomized Route: Eirika"
+                        : "Randomized Route: Ephraim";
+            }
+
+
+            // shuffle array using the Fisher-Yates method.
+            let pool = [...sacredStonesAll];
+
+
+// Where all the filters should be going: Below this.
+            if (unpromotedOnly) {
+                pool = pool.filter(
+                    unit => unit.promotions !== "None"
+                );
+            }
+            
+            if (excludeSeth) {
+                pool = pool.filter(
+                    unit => unit.name !== "Seth"
+                );
+            }
+            
+            for (let i = pool.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [pool[i], pool[j]] = [pool[j], pool[i]];
+            }
+
+           
+             // take 12 unique characters
+            let selected = [];
+
+            if (guaranteeLegends) {
+
+                // One unit from each legendary pool
+                legendaryPools.forEach(poolInfo => {
+
+                    const candidates = pool.filter(unit =>
+                        unit.tags &&
+                        unit.tags.includes(poolInfo.tag) &&
+                        !selected.some(chosen => chosen.name === unit.name)
+                    );
+    
+                    if (candidates.length > 0) {
+                        const chosen = {
+                            ...candidates[Math.floor(Math.random() * candidates.length)],
+                            legendaryWeapon: poolInfo.weapon
+                        };
+
+                        selected.push(chosen);
+                    }
+
+                });
+
+                // Fill remaining slots randomly
+                const remaining = pool.filter(unit =>
+                    !selected.some(chosen => chosen.name === unit.name)
+                );
+
+                for (let i = remaining.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [remaining[i], remaining[j]] = [remaining[j], remaining[i]];
+                }
+
+                selected.push(...remaining.slice(0, 12 - selected.length));
+
+            }
+            else {
+
+                selected = pool.slice(0, 12);
+
+            }
+
+            // Sort selected units by their recruitment order
+            selected.sort((a, b) => a.recruitOrder - b.recruitOrder);
+
+            const output = selected.map(unit => {
+                const chapter = unit.recruitment;
+
+                const randomizePromotions =
+                document.getElementById("randoPromotions").checked;
+
+                let displayedClass = unit.startingClass;
+
+                if (randomizePromotions) {
+                    if (Array.isArray(unit.promotions) && unit.promotions.length > 0) {
+                        displayedClass =
+                            unit.promotions[Math.floor(Math.random() * unit.promotions.length)];
+                    }
+                }
+
+                const displayName = randomizePromotions
+                    ? `${unit.name} (${displayedClass})`
+                    : unit.name;
+
+
+
+                const legendaryText =
+                     guaranteeLegends && unit.legendaryWeapon
+                        ? ` - ${unit.legendaryWeapon}`
+                        : "";
+
+                return `
+                    <strong>${displayName}${legendaryText}</strong><br>
+                    - Recruited In: ${chapter}<br>
+                    - Starting Class: ${unit.startingClass}<br><br>
+                `;
+            }).join("");
+
+            document.getElementById("result").innerHTML = `
+                ${routeText ? `<strong>${routeText}</strong><br><br>` : ""}
+                ${output}
+            `;
+        }
+
+        function generatePools() {
+          const tags = [
+            "SwordPool", "SwordPoolRec",
+            "AxePool", "AxePoolRec",
+            "LancePool", "LancePoolRec",
+            "BowPool", "BowPoolRec",
+            "AnimaPool", "AnimaPoolRec",
+            "LightPool", "LightPoolRec",
+            "DarkPool", "DarkPoolRec",
+            "StaffPool", "StaffPoolRec"
+          ];
+
+          const output = document.getElementById("result");
+          output.innerHTML = ""; // removes all prior output
+
+          tags.forEach(tag => {
+            const header = document.createElement("h3");
+            header.textContent = tag;
+            output.appendChild(header);
+
+            sacredStonesAll.forEach(char => {
+              if (char.tags && char.tags.includes(tag)) {
+                const line = document.createElement("div");
+                line.textContent = char.name;
+                output.appendChild(line);
+              }
+            });
+          });
+        }
+    </script>
+
+  </body>
+</html>
