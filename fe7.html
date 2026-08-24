@@ -58,346 +58,90 @@
 <script>
         const sacredStonesAll = [
             {
-                name: "Seth", 
-                recruitmentEirika: "Prologue",
-                recruitmentEphraim: "Prologue",
-                eirikaOrder: 0.0,
-                ephraimOrder: 0.0,
-                startingClass: "Paladin",
+                name: "Sain", 
+                recruitmentEliwood: "Chapter 1 / Chapter 15",
+                recruitmentHector: "Chapter 1 / Chapter 16",
+                eliwoodOrder: 0.0,
+                hectorOrder: 0.0,
+                startingClass: "Cavalier",
                 automatic: "True",
-                promotions: "None",
+                promotions: "Paladin",
                 tags: ["SwordPool", "SwordPoolRec", "LancePool", "LancePoolRec"],
                 
             },
             {
-                name: "Franz",
-                recruitmentEirika: "Chapter 1",
-                recruitmentEphraim: "Chapter 1",
-                eirikaOrder: 1.0,
-                ephraimOrder: 1.0,
+                name: "Kent", 
+                recruitmentEliwood: "Chapter 1 / Chapter 15",
+                recruitmentHector: "Chapter 1 / Chapter 16",
+                eliwoodOrder: 0.0,
+                hectorOrder: 0.0,
                 startingClass: "Cavalier",
                 automatic: "True",
-                promotions: ["Paladin", "Great Knight"],
-                tags: ["SwordPool", "SwordPoolRec", "AxePool", "LancePool", "LancePoolRec"],
-            },
-            {
-                name: "Gilliam",
-                recruitmentEirika: "Chapter 1",
-                recruitmentEphraim: "Chapter 1",
-                eirikaOrder: 1.0,
-                ephraimOrder: 1.0,
-                startingClass: "Knight",
-                automatic: "True",
-                promotions: ["General", "Great Knight"],
-                tags: ["SwordPool", "AxePool", "LancePool", "LancePoolRec"],
+                promotions: "Paladin",
+                tags: ["SwordPool", "SwordPoolRec", "LancePool", "LancePoolRec"],
                 
             },
             {
-                name: "Vanessa",
-                recruitmentEirika: "Pre-Chapter 2",
-                recruitmentEphraim: "Pre-Chapter 2",
-                eirikaOrder: 1.5,
-                ephraimOrder: 1.5,
+                name: "Florina", 
+                recruitmentEliwood: "Chapter 3 / Chapter 15",
+                recruitmentHector: "Chapter 3 / Chapter 16",
+                eliwoodOrder: 0.0,
+                hectorOrder: 0.0,
                 startingClass: "Pegasus Knight",
                 automatic: "True",
-                promotions: ["Falcoknight", "Wyvern Knight"],
-                tags: ["SwordPool", "LancePool", "LancePoolRec"],
+                promotions: "Falcoknight",
+                tags: ["SwordPool", "SwordPoolRec", "LancePool", "LancePoolRec"],
+                
             },
             {
-                name: "Moulder",
-                recruitmentEirika: "Pre-Chapter 2",
-                recruitmentEphraim: "Pre-Chapter 2",
-                eirikaOrder: 1.5,
-                ephraimOrder: 1.5,
-                startingClass: "Priest",
-                automatic: "True",
-                promotions: ["Bishop", "Sage"],
-                tags: ["AnimaPool", "LightPool", "StaffPool", "StaffPoolRec"],
-            },
-            {
-                name: "Ross",
-                recruitmentEirika: "Chapter 2",
-                recruitmentEphraim: "Chapter 2",
-                eirikaOrder: 2.0,
-                ephraimOrder: 2.0,
-                startingClass: "Journeyman",
-                automatic: "False",
-                promotions: ["Fighter/Pirate -> Warrior", "Pirate -> Berserker", "Fighter -> Hero"],
-                tags: ["SwordPool", "AxePool", "AxePoolRec", "BowPool"],
-            },
-            {
-                name: "Garcia",
-                recruitmentEirika: "Chapter 2",
-                recruitmentEphraim: "Chapter 2",
-                eirikaOrder: 2.0,
-                ephraimOrder: 2.0,
-                startingClass: "Fighter",
-                automatic: "False",
-                promotions: ["Warrior", "Hero"],
-                tags: ["SwordPool", "AxePool", "AxePoolRec", "BowPool"],
-            },
-            {
-                name: "Neimi",
-                recruitmentEirika: "Chapter 3",
-                recruitmentEphraim: "Chapter 3",
-                eirikaOrder: 3.0,
-                ephraimOrder: 3.0,
+                name: "Wil", 
+                recruitmentEliwood: "Chapter 3 / Chapter 15",
+                recruitmentHector: "Chapter 3 / Chapter 16",
+                eliwoodOrder: 0.0,
+                hectorOrder: 0.0,
                 startingClass: "Archer",
                 automatic: "True",
-                promotions: ["Sniper", "Ranger"],
-                tags: ["SwordPool", "BowPool", "BowPoolRec"],
+                promotions: "Sniper",
+                tags: ["SwordPool", "SwordPoolRec", "LancePool", "LancePoolRec"],
+                
             },
             {
-                name: "Colm",
-                recruitmentEirika: "Chapter 3",
-                recruitmentEphraim: "Chapter 3",
-                eirikaOrder: 3.0,
-                ephraimOrder: 3.0,
-                startingClass: "Thief",
-                automatic: "False",
-                promotions: ["Rogue", "Assassin"],
-                tags: ["SwordPool", "SwordPoolRec"],
-            },
-            {
-                name: "Artur",
-                recruitmentEirika: "Chapter 4",
-                recruitmentEphraim: "Chapter 4",
-                eirikaOrder: 4.0,
-                ephraimOrder: 4.0,
-                startingClass: "Monk",
+                name: "Dorcas", 
+                recruitmentEliwood: "Chapter 4 / Chapter 11",
+                recruitmentHector: "Chapter 4 / Chapter 12",
+                eliwoodOrder: 0.0,
+                hectorOrder: 0.0,
+                startingClass: "Fighter",
                 automatic: "True",
-                promotions: ["Bishop", "Sage"],
-                tags: ["AnimaPool", "LightPool", "LightPoolRec", "StaffPool"],
+                promotions: "Warrior",
+                tags: ["SwordPool", "SwordPoolRec", "LancePool", "LancePoolRec"],
+                
             },
             {
-                name: "Lute",
-                recruitmentEirika: "Chapter 4",
-                recruitmentEphraim: "Chapter 4",
-                eirikaOrder: 4.0,
-                ephraimOrder: 4.0,
-                startingClass: "Mage",
-                automatic: "False",
-                promotions: ["Sage", "Mage Knight"],
-                tags: ["AnimaPool", "AnimaPoolRec", "LightPool", "StaffPool"],
-            },
-            {
-                name: "Natasha",
-                recruitmentEirika: "Chapter 5",
-                recruitmentEphraim: "Chapter 5",
-                eirikaOrder: 5.0,
-                ephraimOrder: 5.0,
+                name: "Serra", 
+                recruitmentEliwood: "Chapter 5 / Chapter 13",
+                recruitmentHector: "Chapter 5 / Chapter 12",
+                eliwoodOrder: 0.0,
+                hectorOrder: 0.0,
                 startingClass: "Cleric",
                 automatic: "True",
-                promotions: ["Bishop", "Valkyrie"],
-                tags: ["LightPool", "StaffPool", "StaffPoolRec"],
-            },
-            {
-                name: "Joshua",
-                recruitmentEirika: "Chapter 5",
-                recruitmentEphraim: "Chapter 5",
-                eirikaOrder: 5.0,
-                ephraimOrder: 5.0,
-                startingClass: "Myrmidon",
-                automatic: "False",
-                promotions: ["Swordmaster", "Assassin"],
-                tags: ["SwordPool", "SwordPoolRec"],
-            },
-            {
-                name: "Forde",
-                recruitmentEirika: "Chapter 5x",
-                recruitmentEphraim: "Chapter 5x",
-                eirikaOrder: 5.5,
-                ephraimOrder: 5.5,
-                startingClass: "Cavalier",
-                automatic: "True",
-                promotions: ["Paladin", "Great Knight"],
-                tags: ["SwordPool", "SwordPoolRec", "AxePool", "LancePool", "LancePoolRec"],
-            },
-            {
-                name: "Kyle",
-                recruitmentEirika: "Chapter 5x",
-                recruitmentEphraim: "Chapter 5x",
-                eirikaOrder: 5.5,
-                ephraimOrder: 5.5,
-                startingClass: "Cavalier",
-                automatic: "True",
-                promotions: ["Paladin", "Great Knight"],
-                tags: ["SwordPool", "SwordPoolRec", "AxePool", "LancePool", "LancePoolRec"],
-            },
-            {
-                name: "Tana",
-                recruitmentEirika: "Chapter 9",
-                recruitmentEphraim: "Chapter 9",
-                startingClass: "Pegasus Knight",
-                eirikaOrder: 9.0,
-                ephraimOrder: 9.0,
-                automatic: "True",
-                promotions: ["Falcoknight", "Wyvern Knight"],
-                tags: ["SwordPool", "LancePool", "LancePoolRec"],
-            },
-            {
-                name: "Amelia",
-                recruitmentEirika: "Chapter 9 / 13",
-                recruitmentEphraim: "Chapter 9",
-                eirikaOrder: 9.0,
-                ephraimOrder: 9.0,
-                startingClass: "Recruit",
-                automatic: "False",
-                promotions: ["Knight -> General", "Cavalier -> Paladin", "Knight/Cavalier -> Great Knight"],
-                tags: ["SwordPool", "AxePool", "LancePool", "LancePoolRec"],
-            },
-            {
-                name: "Innes",
-                recruitmentEirika: "Chapter 7",
-                recruitmentEphraim: "Chapter 15",
-                eirikaOrder: 7.0,
-                ephraimOrder: 15.0,
-                startingClass: "Sniper",
-                automatic: "False",
-                promotions: "None",
-                tags: ["BowPool", "BowPoolRec"],
-            },
-            {
-                name: "Gerik",
-                recruitmentEirika: "Chapter 7",
-                recruitmentEphraim: "Chapter 13",
-                eirikaOrder: 7.0,
-                ephraimOrder: 13.0,
-                startingClass: "Mercenary",
-                automatic: "False",
-                promotions: ["Hero", "Ranger"],
-                tags: ["SwordPool", "SwordPoolRec", "AxePool", "BowPool"],
-            },
-            {
-                name: "Tethys",
-                recruitmentEirika: "Chapter 7",
-                recruitmentEphraim: "Chapter 13",
-                eirikaOrder: 7.0,
-                ephraimOrder: 13.0,
-                startingClass: "Dancer",
-                automatic: "False",
-                promotions: "None",
-            },
-            {
-                name: "Marisa",
-                recruitmentEirika: "Chapter 7",
-                recruitmentEphraim: "Chapter 12",
-                eirikaOrder: 7.0,
-                ephraimOrder: 12.0,
-                startingClass: "Myrmidon",
-                automatic: "False",
-                promotions: ["Swordmaster", "Assassin"],
-                tags: ["SwordPool", "SwordPoolRec"],
-            },
-            {
-                name: "L'Arachel",
-                recruitmentEirika: "Chapter 11",
-                recruitmentEphraim: "Chapter 11",
-                eirikaOrder: 11.0,
-                ephraimOrder: 11.0,
-                startingClass: "Troubadour",
-                automatic: "False",
-                promotions: ["Valkyrie", "Mage Knight"],
-                tags: ["AnimaPool", "LightPool", "StaffPool", "StaffPoolRec"],
-            },
-            {
-                name: "Dozla",
-                recruitmentEirika: "Chapter 11",
-                recruitmentEphraim: "Chapter 11",
-                eirikaOrder: 11.0,
-                ephraimOrder: 11.0,
-                startingClass: "Berserker",
-                automatic: "False",
-                promotions: "None",
-                tags: ["AxePool", "AxePoolRec"],
-            },
-            {
-                name: "Saleh",
-                recruitmentEirika: "Chapter 12",
-                recruitmentEphraim: "Chapter 15",
-                eirikaOrder: 12.0,
-                ephraimOrder: 15.0,
-                startingClass: "Sage",
-                automatic: "True",
-                promotions: "None",
-                tags: ["AnimaPool", "AnimaPoolRec", "LightPool", "LightPoolRec", "StaffPool", "StaffPoolRec"],
-            },
-            {
-                name: "Ewan",
-                recruitmentEirika: "Chapter 12",
-                recruitmentEphraim: "Chapter 12",
-                eirikaOrder: 12.0,
-                ephraimOrder: 12.0,
-                startingClass: "Pupil",
-                automatic: "False",
-                promotions: ["Mage -> Sage", "Mage -> Mage Knight", "Shaman -> Druid", "Shaman -> Summoner"],
-                tags: ["AnimaPool", "AnimaPoolRec", "LightPool", "DarkPool", "DarkPoolRec", "StaffPool"],
-            },
-            {
-                name: "Cormag",
-                recruitmentEirika: "Chapter 13",
-                recruitmentEphraim: "Chapter 7",
-                eirikaOrder: 13.0,
-                ephraimOrder: 7.0,
-                startingClass: "Wyvern Rider",
-                automatic: "False",
-                promotions: ["Wyvern Lord", "Wyvern Knight"],
-                tags: ["SwordPool", "LancePool", "LancePoolRec"],
-            },
-            {
-                name: "Rennac",
-                recruitmentEirika: "Chapter 14",
-                recruitmentEphraim: "Chapter 14",
-                eirikaOrder: 14.0,
-                ephraimOrder: 14.0,
-                startingClass: "Rogue",
-                automatic: "False",
-                promotions: "None",
-                tags: ["SwordPool", "SwordPoolRec"],
-            },
-            {
-                name: "Duessel",
-                recruitmentEirika: "Chapter 15",
-                recruitmentEphraim: "Chapter 7",
-                startingClass: "Great Knight",
-                eirikaOrder: 15.0,
-                ephraimOrder: 7.0,
-                automatic: "True",
-                promotions: "None",
-                tags: ["SwordPool", "SwordPoolRec", "AxePool", "AxePoolRec", "LancePool", "LancePoolRec"],
-            },
-            {
-                name: "Knoll",
-                recruitmentEirika: "Chapter 15",
-                recruitmentEphraim: "Chapter 14",
-                eirikaOrder: 15.0,
-                ephraimOrder: 14.0,
-                startingClass: "Shaman",
-                automatic: "True",
-                promotions: ["Druid", "Summoner"],
-                tags: ["DarkPool", "DarkPoolRec", "StaffPool"],
-            },
-            {
-                name: "Myrrh",
-                recruitmentEirika: "Chapter 16",
-                recruitmentEphraim: "Chapter 16",
-                eirikaOrder: 16.0,
-                ephraimOrder: 16.0,
-                startingClass: "Manakete",
-                automatic: "True",
-                promotions: "None",
-            },
-            {
-                name: "Syrene",
-                recruitmentEirika: "Chapter 17",
-                recruitmentEphraim: "Chapter 17",
-                eirikaOrder: 17.0,
-                ephraimOrder: 17.0,
-                startingClass: "Falcoknight",
-                automatic: "False",
-                promotions: "None",
+                promotions: "Bishop",
                 tags: ["SwordPool", "SwordPoolRec", "LancePool", "LancePoolRec"],
+                
+            },
+            {
+                name: "Erk", 
+                recruitmentEliwood: "Chapter 5 / Chapter 14",
+                recruitmentHector: "Chapter 5 / Chapter 14",
+                eliwoodOrder: 0.0,
+                hectorOrder: 0.0,
+                startingClass: "Mage",
+                automatic: "True",
+                promotions: "Sage",
+                tags: ["SwordPool", "SwordPoolRec", "LancePool", "LancePoolRec"],
+                
             }
+
             
         ];
 
@@ -431,8 +175,8 @@
                 actualRoute = Math.random() < 0.5 ? "eliwoodRoute" : "hectorRoute";
                 routeText =
                     actualRoute === "eliwoodRoute"
-                        ? "Randomized Route: Eirika"
-                        : "Randomized Route: Ephraim";
+                        ? "Randomized Route: Eliwood"
+                        : "Randomized Route: Hector";
             }
 
 
@@ -504,23 +248,23 @@
             }
 
             if (actualRoute === "hectorRoute") {
-                selected.sort((a, b) => a.ephraimOrder - b.ephraimOrder);
+                selected.sort((a, b) => a.hectorOrder - b.hectorOrder);
             } else {
-                selected.sort((a, b) => a.eirikaOrder - b.eirikaOrder);
+                selected.sort((a, b) => a.eliwoodOrder - b.eliwoodOrder);
             }
 
             const output = selected.map(unit => {
                 let chapter;
 
                 if (actualRoute === "eliwoodRoute") {
-                    chapter = unit.recruitmentEirika;
+                    chapter = unit.recruitmentEliwood;
                 } else if (actualRoute === "hectorRoute") {
-                    chapter = unit.recruitmentEphraim;
+                    chapter = unit.recruitmentHector;
                 } else {
                     chapter =
-                        unit.recruitmentEirika !== unit.recruitmentEphraim
-                            ? `${unit.recruitmentEirika} (Eirika) / ${unit.recruitmentEphraim} (Ephraim)`
-                            : unit.recruitmentEirika;
+                        unit.recruitmentEliwood !== unit.recruitmentHector
+                            ? `${unit.recruitmentEliwood} (Eirika) / ${unit.recruitmentHector} (Ephraim)`
+                            : unit.recruitmentEliwood;
                 }
 
                 const randomizePromotions =
