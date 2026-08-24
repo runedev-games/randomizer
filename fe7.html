@@ -1,0 +1,638 @@
+    <!DOCTYPE html>
+<html>
+<head>
+    <title>#1 Fire Emblem: The Blazing Blade - Army Randomizer</title>
+</head>
+<body>
+    
+    <label for="routeSelect">Choose Route:</label>
+    <select id="routeSelect">
+        <option value="allRoute">Any Route</option>
+        <option value="eirikaRoute">Eirika Route</option>
+        <option value="ephraimRoute">Ephraim Route</option>
+        <option value="randoRoute">Randomize Route</option>
+    </select>
+
+    <br><br>
+
+    <label>
+    <input type="checkbox" id="randoPromotions">
+        Randomize Promotions?
+    </label>
+
+    <br><br>
+
+    <label>
+    <input type="checkbox" id="guaranteeLegends">
+        Guarantee S-Rank / Legendary Weapon Users?
+    </label>
+
+    <br><br>
+
+    <label>
+    <input type="checkbox" id="unpromotedOnly">
+        Unpromoted Only?
+    </label>
+
+    <br><br>
+
+    <label>
+    <input type="checkbox" id="excludeSeth">
+        Exclude Seth?
+    </label>
+
+    <br><br>
+    
+    <button onclick="generateCharacter()">
+        Randomize Your Army!
+    </button>
+
+    <br><br>
+    
+    <button onclick="generatePools()">
+        Print Pools
+    </button>
+
+    <div id="result"></div>
+
+<script>
+        const sacredStonesAll = [
+            {
+                name: "Boyd", 
+                recruitment: "Chapter 1",
+                recruitOrder: 1.0,
+                startingClass: "Fighter",
+                automatic: "True",
+                promotions: "Warrior",
+                tags: ["SwordPool", "SwordPoolRec"],
+                
+            },
+            {
+                name: "Titania", 
+                recruitment: "Chapter 1",
+                recruitOrder: 1.0,
+                startingClass: "Paladin",
+                automatic: "True",
+                promotions: "None",
+                tags: ["SwordPool", "SwordPoolRec"],
+                
+            },
+            {
+                name: "Oscar", 
+                recruitment: "Chapter 1",
+                recruitOrder: 1.0,
+                startingClass: "Lance Knight",
+                automatic: "True",
+                promotions: "Paladin",
+                tags: ["SwordPool", "SwordPoolRec"],
+                
+            },
+            {
+                name: "Rhys", 
+                recruitment: "Chapter 2",
+                recruitOrder: 2.0,
+                startingClass: "Priest",
+                automatic: "True",
+                promotions: "Bishop",
+                tags: ["SwordPool", "SwordPoolRec"],
+                
+            },
+            {
+                name: "Shinon", 
+                recruitment: "Chapter 3",
+                recruitOrder: 3.0,
+                startingClass: "Sniper",
+                automatic: "True",
+                promotions: "None",
+                tags: ["SwordPool", "SwordPoolRec"],
+                
+            },
+            {
+                name: "Gatrie", 
+                recruitment: "Chapter 3",
+                recruitOrder: 3.0,
+                startingClass: "Knight",
+                automatic: "True",
+                promotions: "General",
+                tags: ["SwordPool", "SwordPoolRec"],
+                
+            },
+            {
+                name: "Soren", 
+                recruitment: "Chapter 4",
+                recruitOrder: 4.0,
+                startingClass: "Mage",
+                automatic: "True",
+                promotions: "Sage",
+                tags: ["SwordPool", "SwordPoolRec"],
+                
+            },
+            {
+                name: "Mia", 
+                recruitment: "Chapter 7",
+                recruitOrder: 7.0,
+                startingClass: "Myrmidon",
+                automatic: "True",
+                promotions: "Swordmaster",
+                tags: ["SwordPool", "SwordPoolRec"],
+                
+            },
+            {
+                name: "Ilyana", 
+                recruitment: "Chapter 8",
+                recruitOrder: 8.0,
+                startingClass: "Mage",
+                automatic: "True",
+                promotions: "Sage",
+                tags: ["SwordPool", "SwordPoolRec"],
+                
+            },
+            {
+                name: "Mist", 
+                recruitment: "Chapter 9",
+                recruitOrder: 9.0,
+                startingClass: "Cleric",
+                automatic: "True",
+                promotions: "Valkyrie",
+                tags: ["SwordPool", "SwordPoolRec"],
+                
+            },
+            {
+                name: "Rolf", 
+                recruitment: "Chapter 9",
+                recruitOrder: 9.0,
+                startingClass: "Archer",
+                automatic: "True",
+                promotions: "Sniper",
+                tags: ["SwordPool", "SwordPoolRec"],
+                
+            },
+            {
+                name: "Marcia", 
+                recruitment: "Chapter 9",
+                recruitOrder: 9.0,
+                startingClass: "Pegasus Knight",
+                automatic: "True",
+                promotions: "Falcon Knight",
+                tags: ["SwordPool", "SwordPoolRec"],
+                
+            },
+            {
+                name: "Lethe", 
+                recruitment: "Chapter 10",
+                recruitOrder: 10.0,
+                startingClass: "Cat",
+                automatic: "True",
+                promotions: "None",
+                tags: ["SwordPool", "SwordPoolRec"],
+                
+            },
+            {
+                name: "Mordecai", 
+                recruitment: "Chapter 10",
+                recruitOrder: 10.0,
+                startingClass: "Tiger",
+                automatic: "True",
+                promotions: "None",
+                tags: ["SwordPool", "SwordPoolRec"],
+                
+            },
+            {
+                name: "Volke", 
+                recruitment: "Chapter 10",
+                recruitOrder: 10.0,
+                startingClass: "Thief",
+                automatic: "True",
+                promotions: "Assassin",
+                tags: ["SwordPool", "SwordPoolRec"],
+                
+            },
+            {
+                name: "Kieran", 
+                recruitment: "Chapter 11",
+                recruitOrder: 11.0,
+                startingClass: "Axe Knight",
+                automatic: "True",
+                promotions: "Paladin",
+                tags: ["SwordPool", "SwordPoolRec"],
+                
+            },
+            {
+                name: "Brom", 
+                recruitment: "Chapter 11",
+                recruitOrder: 11.0,
+                startingClass: "Knight",
+                automatic: "True",
+                promotions: "General",
+                tags: ["SwordPool", "SwordPoolRec"],
+                
+            },
+            {
+                name: "Nephenee", 
+                recruitment: "Chapter 11",
+                recruitOrder: 11.0,
+                startingClass: "Soldier",
+                automatic: "True",
+                promotions: "Halberdier",
+                tags: ["SwordPool", "SwordPoolRec"],
+                
+            },
+            {
+                name: "Zihark", 
+                recruitment: "Chapter 11",
+                recruitOrder: 11.0,
+                startingClass: "Myrmidon",
+                automatic: "True",
+                promotions: "Swordmaster",
+                tags: ["SwordPool", "SwordPoolRec"],
+                
+            },
+            {
+                name: "Sothe", 
+                recruitment: "Chapter 7",
+                recruitOrder: 7.0,
+                startingClass: "Thief",
+                automatic: "True",
+                promotions: "None",
+                tags: ["SwordPool", "SwordPoolRec"],
+                
+            },
+            {
+                name: "Jill", 
+                recruitment: "Chapter 7",
+                recruitOrder: 7.0,
+                startingClass: "Wyvern Knight",
+                automatic: "True",
+                promotions: "Wyvern Lord",
+                tags: ["SwordPool", "SwordPoolRec"],
+                
+            },
+            {
+                name: "Astrid", 
+                recruitment: "Chapter 13",
+                recruitOrder: 13.0,
+                startingClass: "Bow Knight",
+                automatic: "True",
+                promotions: "Paladin",
+                tags: ["SwordPool", "SwordPoolRec"],
+                
+            },
+            {
+                name: "Makalov", 
+                recruitment: "Chapter 14",
+                recruitOrder: 14.0,
+                startingClass: "Sword Knight",
+                automatic: "True",
+                promotions: "Paladin",
+                tags: ["SwordPool", "SwordPoolRec"],
+                
+            },
+            {
+                name: "Stefan", 
+                recruitment: "Chapter 15",
+                recruitOrder: 15.0,
+                startingClass: "Swordmaster",
+                automatic: "True",
+                promotions: "None",
+                tags: ["SwordPool", "SwordPoolRec"],
+                
+            },
+            {
+                name: "Tormod", 
+                recruitment: "Chapter 16",
+                recruitOrder: 16.0,
+                startingClass: "Mage",
+                automatic: "True",
+                promotions: "Sage",
+                tags: ["SwordPool", "SwordPoolRec"],
+                
+            },
+            {
+                name: "Muarim", 
+                recruitment: "Chapter 16",
+                recruitOrder: 16.0,
+                startingClass: "Tiger",
+                automatic: "True",
+                promotions: "None",
+                tags: ["SwordPool", "SwordPoolRec"],
+                
+            },
+            {
+                name: "Devdan", 
+                recruitment: "Chapter 16",
+                recruitOrder: 16.0,
+                startingClass: "Halberdier",
+                automatic: "True",
+                promotions: "None",
+                tags: ["SwordPool", "SwordPoolRec"],
+                
+            },
+            {
+                name: "Tanith", 
+                recruitment: "Chapter 18",
+                recruitOrder: 18.0,
+                startingClass: "Falcon Knight",
+                automatic: "True",
+                promotions: "None",
+                tags: ["SwordPool", "SwordPoolRec"],
+                
+            },
+            {
+                name: "Reyson", 
+                recruitment: "Chapter 18",
+                recruitOrder: 18.0,
+                startingClass: "Heron",
+                automatic: "True",
+                promotions: "None",
+                tags: ["SwordPool", "SwordPoolRec"],
+                
+            },
+            {
+                name: "Janaff", 
+                recruitment: "Chapter 18",
+                recruitOrder: 18.0,
+                startingClass: "Hawk",
+                automatic: "True",
+                promotions: "None",
+                tags: ["SwordPool", "SwordPoolRec"],
+                
+            },
+            {
+                name: "Ulki", 
+                recruitment: "Chapter 18",
+                recruitOrder: 18.0,
+                startingClass: "Hawk",
+                automatic: "True",
+                promotions: "None",
+                tags: ["SwordPool", "SwordPoolRec"],
+                
+            },
+            {
+                name: "Calill", 
+                recruitment: "Chapter 20",
+                recruitOrder: 20.0,
+                startingClass: "Sage",
+                automatic: "True",
+                promotions: "None",
+                tags: ["SwordPool", "SwordPoolRec"],
+                
+            },
+            {
+                name: "Tauroneo", 
+                recruitment: "Chapter 21",
+                recruitOrder: 21.0,
+                startingClass: "General",
+                automatic: "True",
+                promotions: "None",
+                tags: ["SwordPool", "SwordPoolRec"],
+                
+            },
+            {
+                name: "Ranulf", 
+                recruitment: "Chapter 23",
+                recruitOrder: 23.0,
+                startingClass: "Cat",
+                automatic: "True",
+                promotions: "None",
+                tags: ["SwordPool", "SwordPoolRec"],
+                
+            },
+            {
+                name: "Haar", 
+                recruitment: "Chapter 23",
+                recruitOrder: 23.0,
+                startingClass: "Wyvern Lord",
+                automatic: "True",
+                promotions: "None",
+                tags: ["SwordPool", "SwordPoolRec"],
+                
+            },
+            {
+                name: "Bastian", 
+                recruitment: "Chapter 24",
+                recruitOrder: 24.0,
+                startingClass: "Sage",
+                automatic: "True",
+                promotions: "None",
+                tags: ["SwordPool", "SwordPoolRec"],
+                
+            },
+            {
+                name: "Lucia", 
+                recruitment: "Chapter 24",
+                recruitOrder: 24.0,
+                startingClass: "Swordmaster",
+                automatic: "True",
+                promotions: "None",
+                tags: ["SwordPool", "SwordPoolRec"],
+                
+            },
+            {
+                name: "Geoffrey", 
+                recruitment: "Chapter 25",
+                recruitOrder: 25.0,
+                startingClass: "Paladin",
+                automatic: "True",
+                promotions: "None",
+                tags: ["SwordPool", "SwordPoolRec"],
+                
+            },
+            {
+                name: "Largo", 
+                recruitment: "Chapter 25",
+                recruitOrder: 25.0,
+                startingClass: "Berserker",
+                automatic: "True",
+                promotions: "None",
+                tags: ["SwordPool", "SwordPoolRec"],
+                
+            },
+            {
+                name: "Elincia", 
+                recruitment: "Chapter 26",
+                recruitOrder: 26.0,
+                startingClass: "Princess Crimea",
+                automatic: "True",
+                promotions: "None",
+                tags: ["SwordPool", "SwordPoolRec"],
+                
+            }
+        ];
+
+        const legendaryPools = [
+            { tag: "SwordPoolRec", weapon: "Audhulma" },
+            { tag: "AxePoolRec", weapon: "Garm" },
+            { tag: "LancePoolRec", weapon: "Vidofnir" },
+            { tag: "BowPoolRec", weapon: "Nidhogg" },
+            { tag: "AnimaPoolRec", weapon: "Excalibur" },
+            { tag: "LightPoolRec", weapon: "Ivaldi" },
+            { tag: "DarkPoolRec", weapon: "Gleipnir" },
+            { tag: "StaffPoolRec", weapon: "Latona" }
+        ];
+
+
+
+        function generateCharacter() {
+            const route = document.getElementById("routeSelect").value;
+
+            let actualRoute = route;
+            let routeText = "";
+            const unpromotedOnly =
+                document.getElementById("unpromotedOnly").checked;
+            const excludeSeth =
+                document.getElementById("excludeSeth").checked;
+            const guaranteeLegends =
+                document.getElementById("guaranteeLegends").checked;
+            
+
+            if (route === "randoRoute") {
+                actualRoute = Math.random() < 0.5 ? "eirikaRoute" : "ephraimRoute";
+                routeText =
+                    actualRoute === "eirikaRoute"
+                        ? "Randomized Route: Eirika"
+                        : "Randomized Route: Ephraim";
+            }
+
+
+            // shuffle array using the Fisher-Yates method.
+            let pool = [...sacredStonesAll];
+
+
+// Where all the filters should be going: Below this.
+            if (unpromotedOnly) {
+                pool = pool.filter(
+                    unit => unit.promotions !== "None"
+                );
+            }
+            
+            if (excludeSeth) {
+                pool = pool.filter(
+                    unit => unit.name !== "Seth"
+                );
+            }
+            
+            for (let i = pool.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [pool[i], pool[j]] = [pool[j], pool[i]];
+            }
+
+           
+             // take 7 unique characters
+            let selected = [];
+
+            if (guaranteeLegends) {
+
+                // One unit from each legendary pool
+                legendaryPools.forEach(poolInfo => {
+
+                    const candidates = pool.filter(unit =>
+                        unit.tags &&
+                        unit.tags.includes(poolInfo.tag) &&
+                        !selected.some(chosen => chosen.name === unit.name)
+                    );
+    
+                    if (candidates.length > 0) {
+                        const chosen = {
+                            ...candidates[Math.floor(Math.random() * candidates.length)],
+                            legendaryWeapon: poolInfo.weapon
+                        };
+
+                        selected.push(chosen);
+                    }
+
+                });
+
+                // Fill remaining slots randomly
+                const remaining = pool.filter(unit =>
+                    !selected.some(chosen => chosen.name === unit.name)
+                );
+
+                for (let i = remaining.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [remaining[i], remaining[j]] = [remaining[j], remaining[i]];
+                }
+
+                selected.push(...remaining.slice(0, 7 - selected.length));
+
+            }
+            else {
+
+                selected = pool.slice(0, 7);
+
+            }
+
+            // Sort selected units by their recruitment order
+            selected.sort((a, b) => a.recruitOrder - b.recruitOrder);
+
+            const output = selected.map(unit => {
+                const chapter = unit.recruitment;
+
+                const randomizePromotions =
+                document.getElementById("randoPromotions").checked;
+
+                let displayedClass = unit.startingClass;
+
+                if (randomizePromotions) {
+                    if (Array.isArray(unit.promotions) && unit.promotions.length > 0) {
+                        displayedClass =
+                            unit.promotions[Math.floor(Math.random() * unit.promotions.length)];
+                    }
+                }
+
+                const displayName = randomizePromotions
+                    ? `${unit.name} (${displayedClass})`
+                    : unit.name;
+
+
+
+                const legendaryText =
+                     guaranteeLegends && unit.legendaryWeapon
+                        ? ` - ${unit.legendaryWeapon}`
+                        : "";
+
+                return `
+                    <strong>${displayName}${legendaryText}</strong><br>
+                    - Recruited In: ${chapter}<br>
+                    - Starting Class: ${unit.startingClass}<br><br>
+                `;
+            }).join("");
+
+            document.getElementById("result").innerHTML = `
+                ${routeText ? `<strong>${routeText}</strong><br><br>` : ""}
+                ${output}
+            `;
+        }
+
+        function generatePools() {
+          const tags = [
+            "SwordPool", "SwordPoolRec",
+            "AxePool", "AxePoolRec",
+            "LancePool", "LancePoolRec",
+            "BowPool", "BowPoolRec",
+            "AnimaPool", "AnimaPoolRec",
+            "LightPool", "LightPoolRec",
+            "DarkPool", "DarkPoolRec",
+            "StaffPool", "StaffPoolRec"
+          ];
+
+          const output = document.getElementById("result");
+          output.innerHTML = ""; // removes all prior output
+
+          tags.forEach(tag => {
+            const header = document.createElement("h3");
+            header.textContent = tag;
+            output.appendChild(header);
+
+            sacredStonesAll.forEach(char => {
+              if (char.tags && char.tags.includes(tag)) {
+                const line = document.createElement("div");
+                line.textContent = char.name;
+                output.appendChild(line);
+              }
+            });
+          });
+        }
+    </script>
+
+  </body>
+</html>
