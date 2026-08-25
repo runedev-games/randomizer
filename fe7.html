@@ -1,7 +1,7 @@
     <!DOCTYPE html>
 <html>
 <head>
-    <title>#15 Fire Emblem: The Blazing Blade - Army Randomizer</title>
+    <title>#16 Fire Emblem: The Blazing Blade - Army Randomizer</title>
     <style>
         body {
             color: white;
@@ -54,6 +54,18 @@
             width: 300px;
             margin-bottom: 1px;
         }
+        
+        .requiredCharacterBox {
+        border: 2px solid #90ee90;
+        background-color: rgba(77, 56, 47, 0.6);
+        color: white;
+        padding: 10px;
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        border-radius: 10px;
+}
     </style>
 </head>
 <body>
@@ -98,6 +110,97 @@
     <div id="result"></div>
 
 <script>
+
+        const requiredCharacters = [
+            {
+                name: "Lyn", 
+                image: "images/fe7/FE7_Lyn.png",
+                recruitmentLynEliwood: "Chapter 1",
+                recruitmentLynHector: "Chapter 1",
+                recruitmentEliwood: "Chapter 15",
+                recruitmentHector: "Chapter 16",
+                lynEliwoodOrder: 0.0,
+                lynHectorOrder: 0.0,
+                eliwoodOrder: 15.0,
+                hectorOrder: 16.0,
+                startingClass: "Lord",
+                automatic: "True",
+                promotions: "Blade Lord",
+                tags: ["SwordPool", "SwordPoolRec", "LancePool", "LancePoolRec"],
+                required: true,
+            },
+            {
+                name: "Nils", 
+                image: "images/fe7/FE7_Nils.png",
+                recruitmentLynEliwood: "Chapter 7",
+                recruitmentLynHector: "Chapter 7",
+                recruitmentEliwood: "Chapter 29",
+                recruitmentHector: "Chapter 30",
+                lynEliwoodOrder: 7.0,
+                lynHectorOrder: 7.0,
+                eliwoodOrder: 29.0,
+                hectorOrder: 30.0,
+                startingClass: "Bard",
+                automatic: "True",
+                promotions: "None",
+                tags: ["SwordPool", "SwordPoolRec", "LancePool", "LancePoolRec"],
+                required: true,
+            },       
+            {
+                name: "Eliwood", 
+                image: "images/fe7/FE7_Eliwood.png",
+                recruitmentLynEliwood: "Chapter 11",
+                recruitmentLynHector: "Chapter 12",
+                recruitmentEliwood: "Chapter 11",
+                recruitmentHector: "Chapter 12",
+                lynEliwoodOrder: 11.0,
+                lynHectorOrder: 12.0,
+                eliwoodOrder: 11.0,
+                hectorOrder: 12.0,
+                startingClass: "Lord",
+                automatic: "True",
+                promotions: "Knight Lord",
+                tags: ["SwordPool", "SwordPoolRec", "LancePool", "LancePoolRec"],
+                required: true,
+            },
+            {
+                name: "Hector", 
+                image: "images/fe7/FE7_Hector.png",
+                recruitmentLynEliwood: "Chapter 12",
+                recruitmentLynHector: "Chapter 11",
+                recruitmentEliwood: "Chapter 12",
+                recruitmentHector: "Chapter 11",
+                lynEliwoodOrder: 12.0,
+                lynHectorOrder: 11.0,
+                eliwoodOrder: 12.0,
+                hectorOrder: 11.0,
+                startingClass: "Lord",
+                automatic: "True",
+                promotions: "Great Lord",
+                tags: ["SwordPool", "SwordPoolRec", "LancePool", "LancePoolRec"],
+                required: true,
+            },
+            {
+                name: "Athos", 
+                image: "images/fe7/FE7_Athos.png",
+                recruitmentLynEliwood: "Final",
+                recruitmentLynHector: "Final",
+                recruitmentEliwood: "Final",
+                recruitmentHector: "Final",
+                lynEliwoodOrder: 99.0,
+                lynHectorOrder: 99.0,
+                eliwoodOrder: 99.0,
+                hectorOrder: 99.0,
+                startingClass: "Arch Sage",
+                automatic: "True",
+                promotions: "None",
+                tags: ["SwordPool", "SwordPoolRec", "LancePool", "LancePoolRec"],
+                required: true,
+            }
+        
+            // Hector, Nils, Athos...
+        ];
+    
         const blazingBladeAll = [
             {
                 name: "Sain", 
@@ -858,19 +961,21 @@
                  //    guaranteeLegends && unit.legendaryWeapon
                  //       ? ` - ${unit.legendaryWeapon}`
                  //       : "";
-
-                return `
-                        <div class="characterBox">
-                            <img class="characterPortrait" src="${unit.image}" alt="${unit.name}">
-                            
-                            <div class="characterInfo">
-                                <strong>${unit.name}</strong><br>
-                                - Recruited In: ${chapter}<br>
-                                - Starting Class: ${unit.startingClass}
-                            </div>
-                        </div>
-                    `;
-            }).join("");
+            const boxClass = unit.required
+                ? "characterBox requiredCharacterBox"
+                : "characterBox";
+            return `
+                <div class="${boxClass}">
+                    <img class="characterPortrait" src="${unit.image}" alt="${unit.name}">
+                    
+                    <div class="characterInfo">
+                        <strong>${unit.name}</strong><br>
+                        - Recruited In: ${chapter}<br>
+                        - Starting Class: ${unit.startingClass}
+                        ${unit.required ? `<br><strong>Required</strong>` : ""}
+                    </div>
+                </div>
+            `;
 
             document.getElementById("result").innerHTML = `
                 ${routeText ? `<strong>${routeText}</strong><br><br>` : ""}
