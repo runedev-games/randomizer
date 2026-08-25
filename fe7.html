@@ -1,7 +1,7 @@
     <!DOCTYPE html>
 <html>
 <head>
-    <title>#1 Fire Emblem: The Blazing Blade - Army Randomizer</title>
+    <title>#2 Fire Emblem: The Blazing Blade - Army Randomizer</title>
 </head>
 <body>
     
@@ -192,11 +192,11 @@
                 recruitmentLynEliwood: "Chapter 6",
                 recruitmentLynHector: "Chapter 6",
                 recruitmentEliwood: "Chapter 13",
-                recruitmentHector: "Chapter 12",
+                recruitmentHector: "Chapter 11",
                 lynEliwoodOrder: 6.0,
                 lynHectorOrder: 6.0,
                 eliwoodOrder: 13.0,
-                hectorOrder: 12.0,
+                hectorOrder: 11.0,
                 startingClass: "Thief",
                 automatic: "True",
                 promotions: "Assassin",
@@ -680,13 +680,25 @@
                 document.getElementById("guaranteeLegends").checked;
             
 
-            if (route === "randoRoute") {
-                actualRoute = Math.random() < 0.5 ? "eliwoodRoute" : "hectorRoute";
-                routeText =
-                    actualRoute === "eliwoodRoute"
-                        ? "Randomized Route: Eliwood"
-                        : "Randomized Route: Hector";
-            }
+        if (route === "randoRoute") {
+            const routes = [
+                "lynEliwoodRoute",
+                "lynHectorRoute",
+                "eliwoodRoute",
+                "hectorRoute"
+            ];
+        
+            actualRoute = routes[Math.floor(Math.random() * routes.length)];
+        
+            const routeNames = {
+                lynEliwoodRoute: "Lyn's Tale + Eliwood's Tale",
+                lynHectorRoute: "Lyn's Tale + Hector's Tale",
+                eliwoodRoute: "Eliwood's Tale Only",
+                hectorRoute: "Hector's Tale Only"
+            };
+        
+            routeText = `Randomized Route: ${routeNames[actualRoute]}`;
+        }
 
 
             // shuffle array using the Fisher-Yates method.
@@ -756,24 +768,27 @@
 
             }
 
-            if (actualRoute === "hectorRoute") {
-                selected.sort((a, b) => a.hectorOrder - b.hectorOrder);
-            } else {
+            if (actualRoute === "lynEliwoodRoute") {
+                selected.sort((a, b) => a.lynEliwoodOrder - b.lynEliwoodOrder);
+            } else if (actualRoute === "lynHectorRoute") {
+                selected.sort((a, b) => a.lynHectorOrder - b.lynHectorOrder);
+            } else if (actualRoute === "eliwoodRoute") {
                 selected.sort((a, b) => a.eliwoodOrder - b.eliwoodOrder);
+            } else if (actualRoute === "hectorRoute") {
+                selected.sort((a, b) => a.hectorOrder - b.hectorOrder);
             }
 
             const output = selected.map(unit => {
                 let chapter;
 
-                if (actualRoute === "eliwoodRoute") {
+                if (actualRoute === "lynEliwoodRoute") {
+                    chapter = unit.recruitmentLynEliwood;
+                } else if (actualRoute === "lynHectorRoute") {
+                    chapter = unit.recruitmentLynHector;
+                } else if (actualRoute === "eliwoodRoute") {
                     chapter = unit.recruitmentEliwood;
                 } else if (actualRoute === "hectorRoute") {
                     chapter = unit.recruitmentHector;
-                } else {
-                    chapter =
-                        unit.recruitmentEliwood !== unit.recruitmentHector
-                            ? `${unit.recruitmentEliwood} (Eliwood) / ${unit.recruitmentHector} (Hector)`
-                            : unit.recruitmentEliwood;
                 }
 
                 const randomizePromotions =
