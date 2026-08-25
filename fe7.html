@@ -1,7 +1,15 @@
     <!DOCTYPE html>
 <html>
 <head>
-    <title>#4 Fire Emblem: The Blazing Blade - Army Randomizer</title>
+    <title>#5 Fire Emblem: The Blazing Blade - Army Randomizer</title>
+    <style>
+        .characterBox {
+            border: 2px solid black;
+            padding: 12px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+    </style>
 </head>
 <body>
     
@@ -821,9 +829,11 @@
                         : "";
 
                 return `
-                    <strong>${displayName}${legendaryText}</strong><br>
-                    - Recruited In: ${chapter}<br>
-                    - Starting Class: ${unit.startingClass}<br><br>
+                    <div class="characterBox">
+                        <strong>${displayName}${legendaryText}</strong><br>
+                        - Recruited In: ${chapter}<br>
+                        - Starting Class: ${unit.startingClass}
+                    </div>
                 `;
             }).join("");
 
