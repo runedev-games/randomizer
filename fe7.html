@@ -1,13 +1,25 @@
     <!DOCTYPE html>
 <html>
 <head>
-    <title>#5 Fire Emblem: The Blazing Blade - Army Randomizer</title>
+    <title>#6 Fire Emblem: The Blazing Blade - Army Randomizer</title>
     <style>
         .characterBox {
             border: 2px solid black;
-            padding: 12px;
+            padding: 10px;
             margin-bottom: 10px;
-            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+    
+        .characterPortrait {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+        }
+    
+        .characterInfo {
+            flex: 1;
         }
     </style>
 </head>
@@ -68,6 +80,7 @@
         const sacredStonesAll = [
             {
                 name: "Sain", 
+                image: "images/fe7/FE7_Sain.png",
                 recruitmentLynEliwood: "Chapter 1",
                 recruitmentLynHector: "Chapter 1",
                 recruitmentEliwood: "Chapter 15",
@@ -83,7 +96,8 @@
                 
             },
             {
-                name: "Kent", 
+                name: "Kent",
+                image: "images/fe7/FE7_Kent.png",
                 recruitmentLynEliwood: "Chapter 1",
                 recruitmentLynHector: "Chapter 1",
                 recruitmentEliwood: "Chapter 15",
@@ -100,6 +114,7 @@
             },
             {
                 name: "Florina", 
+                image: "images/fe7/FE7_Florina.png",
                 recruitmentLynEliwood: "Chapter 3",
                 recruitmentLynHector: "Chapter 3",
                 recruitmentEliwood: "Chapter 15",
@@ -116,6 +131,7 @@
             },
             {
                 name: "Wil", 
+                image: "images/fe7/FE7_Wil.png",
                 recruitmentLynEliwood: "Chapter 3",
                 recruitmentLynHector: "Chapter 3",
                 recruitmentEliwood: "Chapter 15",
@@ -132,6 +148,7 @@
             },
             {
                 name: "Dorcas", 
+                image: "images/fe7/FE7_Dorcas.png",
                 recruitmentLynEliwood: "Chapter 4",
                 recruitmentLynHector: "Chapter 4",
                 recruitmentEliwood: "Chapter 11",
@@ -148,6 +165,7 @@
             },
             {
                 name: "Serra", 
+                image: "images/fe7/FE7_Serra.png",
                 recruitmentLynEliwood: "Chapter 5",
                 recruitmentLynHector: "Chapter 5",
                 recruitmentEliwood: "Chapter 13",
@@ -164,6 +182,7 @@
             },
             {
                 name: "Erk", 
+                image: "images/fe7/FE7_Erk.png",
                 recruitmentLynEliwood: "Chapter 5",
                 recruitmentLynHector: "Chapter 5",
                 recruitmentEliwood: "Chapter 14",
@@ -180,6 +199,7 @@
             },
             {
                 name: "Rath", 
+                image: "images/fe7/FE7_Rath.png",
                 recruitmentLynEliwood: "Chapter 6",
                 recruitmentLynHector: "Chapter 6",
                 recruitmentEliwood: "Chapter 21",
@@ -196,6 +216,7 @@
             },
             {
                 name: "Matthew", 
+                image: "images/fe7/FE7_Matthew.png",
                 recruitmentLynEliwood: "Chapter 6",
                 recruitmentLynHector: "Chapter 6",
                 recruitmentEliwood: "Chapter 13",
@@ -212,6 +233,7 @@
             },
             {
                 name: "Lucius", 
+                image: "images/fe7/FE7_Lucius.png",
                 recruitmentLynEliwood: "Chapter 7",
                 recruitmentLynHector: "Chapter 7",
                 recruitmentEliwood: "Chapter 16",
@@ -228,6 +250,7 @@
             },
             {
                 name: "Wallace", 
+                image: "images/fe7/FE7_Wallace.png",
                 recruitmentLynEliwood: "Chapter 9",
                 recruitmentLynHector: "Chapter 9",
                 recruitmentEliwood: "Chapter 23",
@@ -244,6 +267,7 @@
             },
             {
                 name: "Marcus", 
+                image: "images/fe7/FE7_Marcus.png",
                 recruitmentLynEliwood: "Chapter 11",
                 recruitmentLynHector: "Chapter 12",
                 recruitmentEliwood: "Chapter 11",
@@ -260,6 +284,7 @@
             },
             {
                 name: "Lowen", 
+                image: "images/fe7/FE7_Lowen.png",
                 recruitmentLynEliwood: "Chapter 11",
                 recruitmentLynHector: "Chapter 12",
                 recruitmentEliwood: "Chapter 11",
@@ -276,6 +301,7 @@
             },
             {
                 name: "Rebecca", 
+                image: "images/fe7/FE7_Rebecca.png",
                 recruitmentLynEliwood: "Chapter 11",
                 recruitmentLynHector: "Chapter 12",
                 recruitmentEliwood: "Chapter 11",
@@ -292,6 +318,7 @@
             },
             {
                 name: "Bartre", 
+                image: "images/fe7/FE7_Bartre.png",
                 recruitmentLynEliwood: "Chapter 11",
                 recruitmentLynHector: "Chapter 12",
                 recruitmentEliwood: "Chapter 11",
@@ -308,6 +335,7 @@
             },
             {
                 name: "Oswin", 
+                image: "images/fe7/FE7_Oswin.png",
                 recruitmentLynEliwood: "Chapter 12",
                 recruitmentLynHector: "Chapter 12",
                 recruitmentEliwood: "Chapter 12",
@@ -324,6 +352,7 @@
             },
             {
                 name: "Guy", 
+                image: "images/fe7/FE7_Guy.png",
                 recruitmentLynEliwood: "Chapter 13",
                 recruitmentLynHector: "Chapter 13",
                 recruitmentEliwood: "Chapter 13",
@@ -340,6 +369,7 @@
             },
             {
                 name: "Priscilla", 
+                image: "images/fe7/FE7_Priscilla.png",
                 recruitmentLynEliwood: "Chapter 14",
                 recruitmentLynHector: "Chapter 14",
                 recruitmentEliwood: "Chapter 14",
@@ -356,6 +386,7 @@
             },
             {
                 name: "Raven", 
+                image: "images/fe7/FE7_Raven.png",
                 recruitmentLynEliwood: "Chapter 16",
                 recruitmentLynHector: "Chapter 17",
                 recruitmentEliwood: "Chapter 16",
@@ -372,6 +403,7 @@
             },
             {
                 name: "Canas", 
+                image: "images/fe7/FE7_Canas.png",
                 recruitmentLynEliwood: "Chapter 16x",
                 recruitmentLynHector: "Chapter 17x",
                 recruitmentEliwood: "Chapter 16x",
@@ -388,6 +420,7 @@
             },
             {
                 name: "Dart", 
+                image: "images/fe7/FE7_Dart.png",
                 recruitmentLynEliwood: "Chapter 18",
                 recruitmentLynHector: "Chapter 19",
                 recruitmentEliwood: "Chapter 18",
@@ -404,6 +437,7 @@
             },
             {
                 name: "Fiora", 
+                image: "images/fe7/FE7_Fiora.png",
                 recruitmentLynEliwood: "Chapter 18",
                 recruitmentLynHector: "Chapter 19",
                 recruitmentEliwood: "Chapter 18",
@@ -420,6 +454,7 @@
             },
             {
                 name: "Legault", 
+                image: "images/fe7/FE7_Legault.png",
                 recruitmentLynEliwood: "Chapter 19",
                 recruitmentLynHector: "Chapter 20",
                 recruitmentEliwood: "Chapter 19",
@@ -436,6 +471,7 @@
             },
             {
                 name: "Isadora", 
+                image: "images/fe7/FE7_Isadora.png",
                 recruitmentLynEliwood: "Chapter 21",
                 recruitmentLynHector: "Chapter 22",
                 recruitmentEliwood: "Chapter 21",
@@ -452,6 +488,7 @@
             },
             {
                 name: "Heath", 
+                image: "images/fe7/FE7_Heath.png",
                 recruitmentLynEliwood: "Chapter 21",
                 recruitmentLynHector: "Chapter 22",
                 recruitmentEliwood: "Chapter 21",
@@ -468,6 +505,7 @@
             },
             {
                 name: "Hawkeye", 
+                image: "images/fe7/FE7_Hawkeye.png",
                 recruitmentLynEliwood: "Chapter 22",
                 recruitmentLynHector: "Chapter 23",
                 recruitmentEliwood: "Chapter 22",
@@ -484,6 +522,7 @@
             },
             {
                 name: "Geitz", 
+                image: "images/fe7/FE7_Geitz.png",
                 recruitmentLynEliwood: "Chapter 23",
                 recruitmentLynHector: "Chapter 24",
                 recruitmentEliwood: "Chapter 23",
@@ -500,6 +539,7 @@
             },
             {
                 name: "Farina", 
+                image: "images/fe7/FE7_Farina.png",
                 // recruitmentLynEliwood: "Chapter 23",
                 recruitmentLynHector: "Chapter 25",
                 // recruitmentEliwood: "Chapter 23",
@@ -516,6 +556,7 @@
             },
             {
                 name: "Pent", 
+                image: "images/fe7/FE7_Pent.png",
                 recruitmentLynEliwood: "Chapter 25",
                 recruitmentLynHector: "Chapter 26",
                 recruitmentEliwood: "Chapter 25",
@@ -532,6 +573,7 @@
             },
             {
                 name: "Louise", 
+                image: "images/fe7/FE7_Louise.png",
                 recruitmentLynEliwood: "Chapter 25",
                 recruitmentLynHector: "Chapter 26",
                 recruitmentEliwood: "Chapter 25",
@@ -548,6 +590,7 @@
             },
             {
                 name: "Karel", 
+                image: "images/fe7/FE7_Karel.png",
                 recruitmentLynEliwood: "Chapter 26",
                 recruitmentLynHector: "Chapter 27",
                 recruitmentEliwood: "Chapter 26",
@@ -564,6 +607,7 @@
             },
             {
                 name: "Harken", 
+                image: "images/fe7/FE7_Harken.png",
                 recruitmentLynEliwood: "Chapter 26",
                 recruitmentLynHector: "Chapter 27",
                 recruitmentEliwood: "Chapter 26",
@@ -580,6 +624,7 @@
             },
             {
                 name: "Nino", 
+                image: "images/fe7/FE7_Nino.png",
                 recruitmentLynEliwood: "Chapter 27",
                 recruitmentLynHector: "Chapter 28",
                 recruitmentEliwood: "Chapter 27",
@@ -596,6 +641,7 @@
             },
             {
                 name: "Jaffar", 
+                image: "images/fe7/FE7_Jaffar.png",
                 recruitmentLynEliwood: "Chapter 27(x)",
                 recruitmentLynHector: "Chapter 28(x)",
                 recruitmentEliwood: "Chapter 27(x)",
@@ -612,6 +658,7 @@
             },
             {
                 name: "Vaida", 
+                image: "images/fe7/FE7_Vaida.png",
                 recruitmentLynEliwood: "Chapter 28",
                 recruitmentLynHector: "Chapter 29",
                 recruitmentEliwood: "Chapter 28",
@@ -628,6 +675,7 @@
             },
             {
                 name: "Karla", 
+                image: "images/fe7/FE7_Karla.png",
                 // recruitmentLynEliwood: "Chapter 23",
                 recruitmentLynHector: "Chapter 31x",
                 // recruitmentEliwood: "Chapter 23",
@@ -644,6 +692,7 @@
             },
             {
                 name: "Renault", 
+                image: "images/fe7/FE7_Renault.png",
                 recruitmentLynEliwood: "Chapter 30",
                 recruitmentLynHector: "Chapter 32",
                 recruitmentEliwood: "Chapter 30",
@@ -829,12 +878,16 @@
                         : "";
 
                 return `
-                    <div class="characterBox">
-                        <strong>${displayName}${legendaryText}</strong><br>
-                        - Recruited In: ${chapter}<br>
-                        - Starting Class: ${unit.startingClass}
-                    </div>
-                `;
+                        <div class="characterBox">
+                            <img class="characterPortrait" src="images/fe7/${unit.image}" alt="${unit.name}">
+                            
+                            <div class="characterInfo">
+                                <strong>${displayName}${legendaryText}</strong><br>
+                                - Recruited In: ${chapter}<br>
+                                - Starting Class: ${unit.startingClass}
+                            </div>
+                        </div>
+                    `;
             }).join("");
 
             document.getElementById("result").innerHTML = `
