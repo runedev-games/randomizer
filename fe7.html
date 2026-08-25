@@ -1,7 +1,7 @@
     <!DOCTYPE html>
 <html>
 <head>
-    <title>#9 Fire Emblem: The Blazing Blade - Army Randomizer</title>
+    <title>#10 Fire Emblem: The Blazing Blade - Army Randomizer</title>
     <style>
         body {
             color: white;
@@ -93,7 +93,7 @@
     <div id="result"></div>
 
 <script>
-        const sacredStonesAll = [
+        const blazingBladeAll = [
             {
                 name: "Sain", 
                 image: "images/fe7/FE7_Sain.png",
@@ -774,7 +774,7 @@
 
 
             // shuffle array using the Fisher-Yates method.
-            let pool = [...sacredStonesAll];
+            let pool = [...blazingBladeAll];
 
 
 // Where all the filters should be going: Below this.
@@ -932,7 +932,7 @@
             header.textContent = tag;
             output.appendChild(header);
 
-            sacredStonesAll.forEach(char => {
+            blazingBladeAll.forEach(char => {
               if (char.tags && char.tags.includes(tag)) {
                 const line = document.createElement("div");
                 line.textContent = char.name;
