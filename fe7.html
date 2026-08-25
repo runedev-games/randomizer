@@ -1,7 +1,7 @@
     <!DOCTYPE html>
 <html>
 <head>
-    <title>#12 Fire Emblem: The Blazing Blade - Army Randomizer</title>
+    <title>#13 Fire Emblem: The Blazing Blade - Army Randomizer</title>
     <style>
         body {
             color: white;
@@ -52,7 +52,7 @@
         
         .boxArt {
             width: 300px;
-            margin-bottom: 5px;
+            margin-bottom: 1px;
         }
     </style>
 </head>
@@ -74,19 +74,6 @@
 
     <br><br>
 
-    <label>
-    <input type="checkbox" id="randoPromotions">
-        Randomize Promotions?
-    </label>
-
-    <br><br>
-
-    <label>
-    <input type="checkbox" id="guaranteeLegends">
-        Guarantee S-Rank / Legendary Weapon Users?
-    </label>
-
-    <br><br>
 
     <label>
     <input type="checkbox" id="unpromotedOnly">
@@ -899,30 +886,30 @@
 
                 let displayedClass = unit.startingClass;
 
-                if (randomizePromotions) {
-                    if (Array.isArray(unit.promotions) && unit.promotions.length > 0) {
-                        displayedClass =
-                            unit.promotions[Math.floor(Math.random() * unit.promotions.length)];
-                    }
-                }
+                // if (randomizePromotions) {
+                //   if (Array.isArray(unit.promotions) && unit.promotions.length > 0) {
+                //        displayedClass =
+                //            unit.promotions[Math.floor(Math.random() * unit.promotions.length)];
+                //    }
+                // }
 
-                const displayName = randomizePromotions
-                    ? `${unit.name} (${displayedClass})`
-                    : unit.name;
+                // const displayName = randomizePromotions
+                //    ? `${unit.name} (${displayedClass})`
+                //    : unit.name;
 
 
 
-                const legendaryText =
-                     guaranteeLegends && unit.legendaryWeapon
-                        ? ` - ${unit.legendaryWeapon}`
-                        : "";
+                // const legendaryText =
+                 //    guaranteeLegends && unit.legendaryWeapon
+                 //       ? ` - ${unit.legendaryWeapon}`
+                 //       : "";
 
                 return `
                         <div class="characterBox">
                             <img class="characterPortrait" src="${unit.image}" alt="${unit.name}">
                             
                             <div class="characterInfo">
-                                <strong>${displayName}${legendaryText}</strong><br>
+                                <strong>${unit.name}</strong><br>
                                 - Recruited In: ${chapter}<br>
                                 - Starting Class: ${unit.startingClass}
                             </div>
