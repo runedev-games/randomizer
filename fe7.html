@@ -1,7 +1,7 @@
     <!DOCTYPE html>
 <html>
 <head>
-    <title>#21 Fire Emblem: The Blazing Blade - Army Randomizer</title>
+    <title>#22 Fire Emblem: The Blazing Blade - Army Randomizer</title>
     <style>
         body {
             color: white;
@@ -97,6 +97,13 @@
     <label>
     <input type="checkbox" id="excludeMarcus">
         Exclude Marcus?
+    </label>
+
+    <br><br>
+
+    <label>
+    <input type="checkbox" id="excludeKarla">
+        Exclude Karla?
     </label>
 
     <br><br>
@@ -885,6 +892,8 @@
                 document.getElementById("unpromotedOnly").checked;
             const excludeMarcus =
                 document.getElementById("excludeMarcus").checked;
+            const excludeKarla =
+                document.getElementById("excludeKarla").checked;
             // const guaranteeLegends =
                 // document.getElementById("guaranteeLegends").checked;
             
@@ -924,6 +933,12 @@
             if (excludeMarcus) {
                 pool = pool.filter(
                     unit => unit.name !== "Marcus"
+                );
+            }
+
+            if (excludeKarla) {
+                pool = pool.filter(
+                    unit => unit.name !== "Karla"
                 );
             }
 
