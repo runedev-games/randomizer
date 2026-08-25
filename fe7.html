@@ -1,7 +1,7 @@
     <!DOCTYPE html>
 <html>
 <head>
-    <title>#16 Fire Emblem: The Blazing Blade - Army Randomizer</title>
+    <title>#17 Fire Emblem: The Blazing Blade - Army Randomizer</title>
     <style>
         body {
             color: white;
@@ -845,7 +845,36 @@
         //    { tag: "StaffPoolRec", weapon: "Latona" }
         // ];
 
-
+        function createCharacterBox(unit, actualRoute) {
+            let chapter;
+        
+            if (actualRoute === "lynEliwoodRoute") {
+                chapter = unit.recruitmentLynEliwood;
+            } else if (actualRoute === "lynHectorRoute") {
+                chapter = unit.recruitmentLynHector;
+            } else if (actualRoute === "eliwoodRoute") {
+                chapter = unit.recruitmentEliwood;
+            } else if (actualRoute === "hectorRoute") {
+                chapter = unit.recruitmentHector;
+            }
+        
+            const boxClass = unit.required
+                ? "characterBox requiredCharacterBox"
+                : "characterBox";
+        
+            return `
+                <div class="${boxClass}">
+                    <img class="characterPortrait" src="${unit.image}" alt="${unit.name}">
+                    
+                    <div class="characterInfo">
+                        <strong>${unit.name}</strong><br>
+                        - Recruited In: ${chapter}<br>
+                        - Starting Class: ${unit.startingClass}
+                        ${unit.required ? `<br><strong>Required</strong>` : ""}
+                    </div>
+                </div>
+            `;
+        }
 
         function generateCharacter() {
             const route = document.getElementById("routeSelect").value;
@@ -926,62 +955,21 @@
                 selected.sort((a, b) => a.hectorOrder - b.hectorOrder);
             }
 
-            const output = selected.map(unit => {
-                let chapter;
+        // I removed const output here.
 
-                if (actualRoute === "lynEliwoodRoute") {
-                    chapter = unit.recruitmentLynEliwood;
-                } else if (actualRoute === "lynHectorRoute") {
-                    chapter = unit.recruitmentLynHector;
-                } else if (actualRoute === "eliwoodRoute") {
-                    chapter = unit.recruitmentEliwood;
-                } else if (actualRoute === "hectorRoute") {
-                    chapter = unit.recruitmentHector;
-                }
-
-                // const randomizePromotions =
-                // document.getElementById("randoPromotions").checked;
-
-                let displayedClass = unit.startingClass;
-
-                // if (randomizePromotions) {
-                //   if (Array.isArray(unit.promotions) && unit.promotions.length > 0) {
-                //        displayedClass =
-                //            unit.promotions[Math.floor(Math.random() * unit.promotions.length)];
-                //    }
-                // }
-
-                // const displayName = randomizePromotions
-                //    ? `${unit.name} (${displayedClass})`
-                //    : unit.name;
-
-
-
-                // const legendaryText =
-                 //    guaranteeLegends && unit.legendaryWeapon
-                 //       ? ` - ${unit.legendaryWeapon}`
-                 //       : "";
-            const boxClass = unit.required
-                ? "characterBox requiredCharacterBox"
-                : "characterBox";
-            return `
-                <div class="${boxClass}">
-                    <img class="characterPortrait" src="${unit.image}" alt="${unit.name}">
-                    
-                    <div class="characterInfo">
-                        <strong>${unit.name}</strong><br>
-                        - Recruited In: ${chapter}<br>
-                        - Starting Class: ${unit.startingClass}
-                        ${unit.required ? `<br><strong>Required</strong>` : ""}
-                    </div>
-                </div>
-            `;
-
-            document.getElementById("result").innerHTML = `
-                ${routeText ? `<strong>${routeText}</strong><br><br>` : ""}
-                ${output}
-            `;
-        }
+        const requiredOutput = requiredCharacters
+            .map(unit => createCharacterBox(unit, actualRoute))
+            .join("");
+        
+        const randomOutput = selected
+            .map(unit => createCharacterBox(unit, actualRoute))
+            .join("");
+        
+        document.getElementById("result").innerHTML = `
+            ${routeText ? `<strong>${routeText}</strong><br><br>` : ""}
+            ${requiredOutput}
+            ${randomOutput}
+        `;    
 
         function generatePools() {
           const tags = [
