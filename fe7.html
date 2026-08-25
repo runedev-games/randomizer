@@ -1,7 +1,7 @@
     <!DOCTYPE html>
 <html>
 <head>
-    <title>#18 Fire Emblem: The Blazing Blade - Army Randomizer</title>
+    <title>#19 Fire Emblem: The Blazing Blade - Army Randomizer</title>
     <style>
         body {
             color: white;
@@ -957,7 +957,19 @@
 
         // I removed const output here.
 
-        const requiredOutput = requiredCharacters
+        let sortedRequired = [...requiredCharacters];
+        
+        if (actualRoute === "lynEliwoodRoute") {
+            sortedRequired.sort((a, b) => a.lynEliwoodOrder - b.lynEliwoodOrder);
+        } else if (actualRoute === "lynHectorRoute") {
+            sortedRequired.sort((a, b) => a.lynHectorOrder - b.lynHectorOrder);
+        } else if (actualRoute === "eliwoodRoute") {
+            sortedRequired.sort((a, b) => a.eliwoodOrder - b.eliwoodOrder);
+        } else if (actualRoute === "hectorRoute") {
+            sortedRequired.sort((a, b) => a.hectorOrder - b.hectorOrder);
+        }
+        
+        const requiredOutput = sortedRequired
             .map(unit => createCharacterBox(unit, actualRoute))
             .join("");
         
@@ -967,11 +979,13 @@
         
         document.getElementById("result").innerHTML = `
             ${routeText ? `<strong>${routeText}</strong><br><br>` : ""}
+        
+            <h2>Required Units</h2>
             ${requiredOutput}
+        
+            <h2>Randomization Results</h2>
             ${randomOutput}
-        `;    
-
-        }
+        `;
 
         function generatePools() {
           const tags = [
