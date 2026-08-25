@@ -1,7 +1,7 @@
     <!DOCTYPE html>
 <html>
 <head>
-    <title>#2 Fire Emblem: The Blazing Blade - Army Randomizer</title>
+    <title>#3 Fire Emblem: The Blazing Blade - Army Randomizer</title>
 </head>
 <body>
     
@@ -715,6 +715,13 @@
             if (excludeSeth) {
                 pool = pool.filter(
                     unit => unit.name !== "Seth"
+                );
+            }
+
+            // Remove Hector-exclusive characters from Eliwood routes
+            if (actualRoute === "lynEliwoodRoute" || actualRoute === "eliwoodRoute") {
+                pool = pool.filter(
+                    unit => unit.name !== "Farina" && unit.name !== "Karla"
                 );
             }
             
