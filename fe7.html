@@ -1,7 +1,7 @@
     <!DOCTYPE html>
 <html>
 <head>
-    <title>#13 Fire Emblem: The Blazing Blade - Army Randomizer</title>
+    <title>#14 Fire Emblem: The Blazing Blade - Army Randomizer</title>
     <style>
         body {
             color: white;
@@ -83,20 +83,14 @@
     <br><br>
 
     <label>
-    <input type="checkbox" id="excludeSeth">
-        Exclude Seth?
+    <input type="checkbox" id="excludeMarcus">
+        Exclude Marcus?
     </label>
 
     <br><br>
     
     <button class="randomizeButton" onclick="generateCharacter()">
         Randomize Your Army!
-    </button>
-
-    <br><br>
-    
-    <button onclick="generatePools()">
-        Print Pools
     </button>
 
     <br><br>
@@ -737,16 +731,16 @@
             
         ];
 
-        const legendaryPools = [
-            { tag: "SwordPoolRec", weapon: "Audhulma" },
-            { tag: "AxePoolRec", weapon: "Garm" },
-            { tag: "LancePoolRec", weapon: "Vidofnir" },
-            { tag: "BowPoolRec", weapon: "Nidhogg" },
-            { tag: "AnimaPoolRec", weapon: "Excalibur" },
-            { tag: "LightPoolRec", weapon: "Ivaldi" },
-            { tag: "DarkPoolRec", weapon: "Gleipnir" },
-            { tag: "StaffPoolRec", weapon: "Latona" }
-        ];
+        // const legendaryPools = [
+        //    { tag: "SwordPoolRec", weapon: "Audhulma" },
+        //    { tag: "AxePoolRec", weapon: "Garm" },
+        //    { tag: "LancePoolRec", weapon: "Vidofnir" },
+        //    { tag: "BowPoolRec", weapon: "Nidhogg" },
+        //    { tag: "AnimaPoolRec", weapon: "Excalibur" },
+        //    { tag: "LightPoolRec", weapon: "Ivaldi" },
+        //    { tag: "DarkPoolRec", weapon: "Gleipnir" },
+        //    { tag: "StaffPoolRec", weapon: "Latona" }
+        // ];
 
 
 
@@ -757,10 +751,10 @@
             let routeText = "";
             const unpromotedOnly =
                 document.getElementById("unpromotedOnly").checked;
-            const excludeSeth =
-                document.getElementById("excludeSeth").checked;
-            const guaranteeLegends =
-                document.getElementById("guaranteeLegends").checked;
+            const excludeMarcus =
+                document.getElementById("excludeMarcus").checked;
+            // const guaranteeLegends =
+                // document.getElementById("guaranteeLegends").checked;
             
 
         if (route === "randoRoute") {
@@ -795,9 +789,9 @@
                 );
             }
             
-            if (excludeSeth) {
+            if (excludeMarcus) {
                 pool = pool.filter(
-                    unit => unit.name !== "Seth"
+                    unit => unit.name !== "Marcus"
                 );
             }
 
@@ -881,8 +875,8 @@
                     chapter = unit.recruitmentHector;
                 }
 
-                const randomizePromotions =
-                document.getElementById("randoPromotions").checked;
+                // const randomizePromotions =
+                // document.getElementById("randoPromotions").checked;
 
                 let displayedClass = unit.startingClass;
 
