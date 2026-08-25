@@ -27,6 +27,7 @@
         .characterInfo {
             flex: 1;
         }
+        
         body {
             background-image: 
                 linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
@@ -35,6 +36,13 @@
             background-position: center;
             background-attachment: fixed;
             background-repeat: no-repeat;
+        }
+        
+        .randomizeButton {
+            font-size: 20px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
         }
     </style>
 </head>
@@ -79,7 +87,7 @@
 
     <br><br>
     
-    <button onclick="generateCharacter()">
+    <button class="randomizeButton" onclick="generateCharacter()">
         Randomize Your Army!
     </button>
 
