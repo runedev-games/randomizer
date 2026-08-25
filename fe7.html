@@ -1,7 +1,7 @@
     <!DOCTYPE html>
 <html>
 <head>
-    <title>#14 Fire Emblem: The Blazing Blade - Army Randomizer</title>
+    <title>#15 Fire Emblem: The Blazing Blade - Army Randomizer</title>
     <style>
         body {
             color: white;
@@ -809,48 +809,9 @@
 
            
              // take 7 unique characters
-            let selected = [];
+           let selected = [];
 
-            if (guaranteeLegends) {
-
-                // One unit from each legendary pool
-                legendaryPools.forEach(poolInfo => {
-
-                    const candidates = pool.filter(unit =>
-                        unit.tags &&
-                        unit.tags.includes(poolInfo.tag) &&
-                        !selected.some(chosen => chosen.name === unit.name)
-                    );
-    
-                    if (candidates.length > 0) {
-                        const chosen = {
-                            ...candidates[Math.floor(Math.random() * candidates.length)],
-                            legendaryWeapon: poolInfo.weapon
-                        };
-
-                        selected.push(chosen);
-                    }
-
-                });
-
-                // Fill remaining slots randomly
-                const remaining = pool.filter(unit =>
-                    !selected.some(chosen => chosen.name === unit.name)
-                );
-
-                for (let i = remaining.length - 1; i > 0; i--) {
-                    const j = Math.floor(Math.random() * (i + 1));
-                    [remaining[i], remaining[j]] = [remaining[j], remaining[i]];
-                }
-
-                selected.push(...remaining.slice(0, 7 - selected.length));
-
-            }
-            else {
-
-                selected = pool.slice(0, 7);
-
-            }
+           selected = pool.slice(0, 7);
 
             if (actualRoute === "lynEliwoodRoute") {
                 selected.sort((a, b) => a.lynEliwoodOrder - b.lynEliwoodOrder);
