@@ -1,7 +1,7 @@
     <!DOCTYPE html>
 <html>
 <head>
-    <title>#28 Fire Emblem: The Blazing Blade - Army Randomizer</title>
+    <title>#29 Fire Emblem: The Blazing Blade - Army Randomizer</title>
     <style>
         body {
             color: white;
@@ -63,26 +63,27 @@
         }
         
         .requiredCharacterBox {
-        border: 2px solid #90ee90;
-        background-color: rgba(77, 56, 47, 0.6);
-        color: white;
-        padding: 10px;
-        margin-bottom: 10px;
-        display: flex;
-        align-items: center;
-        gap: 15px;
-        border-radius: 10px;
-
+            border: 2px solid #90ee90;
+            background-color: rgba(77, 56, 47, 0.6);
+            color: white;
+            padding: 10px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border-radius: 10px;
+        }
+        
         .characterPortraitPair {
-        display: flex;
-        gap: 5px;
+            display: flex;
+            gap: 5px;
         }
         
         .characterPortraitPair .characterPortrait {
             width: 55px;
             height: 80px;
         }
-
+        
         .banSection {
             text-align: center;
             margin-bottom: 10px;
@@ -1029,12 +1030,6 @@
             }
 
             // Remove banned units
-            const bannedUnits = [
-                document.getElementById("ban1").value,
-                document.getElementById("ban2").value,
-                document.getElementById("ban3").value
-            ].filter(name => name !== "");
-            
             pool = pool.filter(unit => !bannedUnits.includes(unit.name));
             
             // Shuffle array using the Fisher-Yates method
@@ -1099,35 +1094,7 @@
             ${randomOutput}
         `;
 
-        function generatePools() {
-          const tags = [
-            "SwordPool", "SwordPoolRec",
-            "AxePool", "AxePoolRec",
-            "LancePool", "LancePoolRec",
-            "BowPool", "BowPoolRec",
-            "AnimaPool", "AnimaPoolRec",
-            "LightPool", "LightPoolRec",
-            "DarkPool", "DarkPoolRec",
-            "StaffPool", "StaffPoolRec"
-          ];
-
-          const output = document.getElementById("result");
-          output.innerHTML = ""; // removes all prior output
-
-          tags.forEach(tag => {
-            const header = document.createElement("h3");
-            header.textContent = tag;
-            output.appendChild(header);
-
-            blazingBladeAll.forEach(char => {
-              if (char.tags && char.tags.includes(tag)) {
-                const line = document.createElement("div");
-                line.textContent = char.name;
-                output.appendChild(line);
-              }
-            });
-          });
-        }
+        
        }
     </script>
 
