@@ -1,7 +1,7 @@
     <!DOCTYPE html>
 <html>
 <head>
-    <title>#25 Fire Emblem: The Blazing Blade - Army Randomizer</title>
+    <title>#26 Fire Emblem: The Blazing Blade - Army Randomizer</title>
     <style>
         body {
             color: white;
@@ -76,12 +76,32 @@
         .characterPortraitPair {
         display: flex;
         gap: 5px;
-}
+        }
+        
+        .characterPortraitPair .characterPortrait {
+            width: 55px;
+            height: 80px;
+        }
 
-.characterPortraitPair .characterPortrait {
-    width: 55px;
-    height: 80px;
-}
+        .banSection {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        
+        .banChoices {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 8px;
+        }
+        
+        .banChoices select {
+            font-size: 16px;
+            padding: 6px 10px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+            
 }
     </style>
 </head>
@@ -123,6 +143,26 @@
         Exclude Karla?
     </label>
 
+    <br><br>
+
+    <div class="banSection">
+        <strong>Ban 3 Units:</strong>
+    
+        <div class="banChoices">
+            <select id="ban1">
+                <option value="">No Ban</option>
+            </select>
+    
+            <select id="ban2">
+                <option value="">No Ban</option>
+            </select>
+    
+            <select id="ban3">
+                <option value="">No Ban</option>
+            </select>
+        </div>
+    </div>
+    
     <br><br>
     
     <button class="randomizeButton" onclick="generateCharacter()">
@@ -415,7 +455,7 @@
                     "Warrior"
                 ],
                 automatic: "True",
-                promotions: "General",
+                promotions: "None",
                 tags: ["SwordPool", "SwordPoolRec", "LancePool", "LancePoolRec"],
                 
             },
@@ -891,8 +931,37 @@
             `;
         }
 
+        function populateBanChoices() {
+            const banSelects = [
+                document.getElementById("ban1"),
+                document.getElementById("ban2"),
+                document.getElementById("ban3")
+            ];
+        
+            const banPool = blazingBladeAll.filter(unit => !unit.required);
+        
+            banSelects.forEach(select => {
+                select.innerHTML = '<option value="">No Ban</option>';
+        
+                banPool.forEach(unit => {
+                    const option = document.createElement("option");
+                    option.value = unit.name;
+                    option.textContent = unit.name;
+                    select.appendChild(option);
+                });
+            });
+        }
+
+        populateBanChoices();
+    
         function generateCharacter() {
             const route = document.getElementById("routeSelect").value;
+
+            const ban1 = document.getElementById("ban1").value;
+            const ban2 = document.getElementById("ban2").value;
+            const ban3 = document.getElementById("ban3").value;
+            
+            const bannedUnits = [ban1, ban2, ban3].filter(name => name !== "");
 
             let actualRoute = route;
             let routeText = "";
@@ -956,6 +1025,9 @@
                     unit => unit.name !== "Farina" && unit.name !== "Karla"
                 );
             }
+
+            // Remove banned units
+            pool = pool.filter(unit => !bannedUnits.includes(unit.name)); 
             
             for (let i = pool.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
