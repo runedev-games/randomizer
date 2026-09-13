@@ -1,7 +1,7 @@
     <!DOCTYPE html>
 <html>
 <head>
-    <title>#33 Fire Emblem: The Blazing Blade - Army Randomizer</title>
+    <title>#34 Fire Emblem: The Blazing Blade - Army Randomizer</title>
     <style>
         body {
             color: white;
@@ -13,31 +13,30 @@
             text-align: center;
         }
         
+        .characterGrid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+        }
+        
         .characterBox {
-            width: 180px;
+            width: 220px;
+            box-sizing: border-box;
             border: 2px solid #d4af37;
             background-color: rgba(77, 56, 47, 0.6);
             color: white;
             padding: 10px;
             margin-bottom: 10px;
             display: flex;
-            flex-direction: column;
             align-items: center;
-            gap: 8px;
+            gap: 15px;
             border-radius: 10px;
-            box-sizing: border-box;
         }
-        
-        .characterGrid {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 10px;
-        }
-    
+            
         .characterPortrait {
-            width: 80px;
-            height: 80px;
+            width: 90px;
+            height: 90px;
             object-fit: contain;
         }
     
@@ -137,16 +136,17 @@
         }
 
         .infoBox {
-            width: 100%;
-            box-sizing: border-box;
+            width: fit-content;
+            max-width: 60%;
+            margin: 15px auto;
             border: 2px solid #6495ed;
             background-color: rgba(30, 45, 70, 0.75);
             color: white;
             padding: 15px 20px;
-            margin: 15px auto;
             border-radius: 10px;
             line-height: 1.5;
             text-align: left;
+            box-sizing: border-box;
         }
 
         .selectionBox {
@@ -210,6 +210,15 @@
             border-radius: 8px;
             cursor: pointer;
         }
+
+        .sectionTitle {
+            text-align: center;
+            font-size: 22px;
+            font-weight: bold;
+            margin-top: 25px;
+            margin-bottom: 10px;
+        }
+        
             
 }
     </style>
@@ -259,28 +268,31 @@
     <br><br>
 
 
-    <div class="checkboxBox">
+    <div class="sectionTitle">
+        Unpromoted Restriction
+    </div>
     
+    <div class="infoBox">
+        <p>
+            This option selects units that begin in a class that can change class using an appropriate promotion item, and excludes units like Marcus who begin as a promoted Paladin class.
+        </p>
+        <p><i>*Wallace / Geitz is considered a promoted unit for this purpose.</i></p>
+    </div>
+    
+    <div class="checkboxBox">
         <label>
             <input type="checkbox" id="unpromotedOnly">
             Unpromoted Only?
         </label>
-    
-        <div class="infoBox">
-            This option selects units that begin in a class that can change class using an appropriate promotion item, 
-            <br>and excludes units like Marcus who begin as a promoted Paladin class.
-    
-            <br><br>
-    
-            <em>*Wallace / Geitz is considered a promoted unit for this purpose.</em>
-        </div>
-    
     </div>
 
     <br><br>
 
+    <div class="sectionTitle">
+        Ban 3 Units
+    </div>
+    
     <div class="infoBox">
-        <strong>Ban 3 Units:</strong>
         <p>
             These options will remove the following unit(s) from the randomization pool, based on your preferences and for your convenience.
         </p>
