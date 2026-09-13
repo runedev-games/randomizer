@@ -1,7 +1,7 @@
     <!DOCTYPE html>
 <html>
 <head>
-    <title>Fire Emblem: The Blazing Blade - Army Randomizer</title>
+    <title>#1 Fire Emblem: The Sacred Stones - Army Randomizer</title>
     <style>
         body {
             color: white;
@@ -344,9 +344,6 @@
                 required: true,
                 image: "images/fe8/FE8_Ephraim.png"
             }
-        ];
-        
-            // Hector, Nils, Athos...
         ];
     
         const sacredStonesAll = [
@@ -832,14 +829,6 @@
                     unit => unit.promotions !== "None"
                 );
             }
-            
-
-            // Remove Hector-exclusive characters from Eliwood routes
-            if (actualRoute === "lynEliwoodRoute" || actualRoute === "eliwoodRoute") {
-                pool = pool.filter(
-                    unit => unit.name !== "Farina" && unit.name !== "Karla"
-                );
-            }
 
             // Remove banned units
             pool = pool.filter(unit => !bannedUnits.includes(unit.name));
@@ -851,26 +840,18 @@
             }
 
            
-             // take 7 unique characters
-           let selected = [];
-
-           selected = pool.slice(0, 10);
-
-        if (actualRoute === "eirikaRoute") {
-            selected.sort((a, b) => a.eirikaOrder - b.eirikaOrder);
-        } else if (actualRoute === "ephraimRoute") {
-            selected.sort((a, b) => a.ephraimOrder - b.ephraimOrder);
-        }
-
-        // I removed const output here.
-
-        let sortedRequired = [...requiredCharacters];
+        // Take 10 unique characters
+        let selected = [];
+        
+        selected = pool.slice(0, 10);
         
         if (actualRoute === "eirikaRoute") {
             selected.sort((a, b) => a.eirikaOrder - b.eirikaOrder);
         } else if (actualRoute === "ephraimRoute") {
             selected.sort((a, b) => a.ephraimOrder - b.ephraimOrder);
         }
+        
+        let sortedRequired = [...requiredCharacters];
         
         const requiredOutput = `
             <div class="characterGrid">
