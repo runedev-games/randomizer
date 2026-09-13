@@ -1,7 +1,7 @@
     <!DOCTYPE html>
 <html>
 <head>
-    <title>#22 Fire Emblem: The Blazing Blade - Army Randomizer</title>
+    <title>#23 Fire Emblem: The Blazing Blade - Army Randomizer</title>
     <style>
         body {
             color: white;
@@ -13,9 +13,16 @@
             padding: 10px;
             margin-bottom: 10px;
             display: flex;
+            flex-direction: column;
             align-items: center;
-            gap: 15px;
+            gap: 8px;
             border-radius: 10px;
+            box-sizing: border-box;
+        }
+        .characterGrid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
         }
     
         .characterPortrait {
@@ -984,13 +991,21 @@
             sortedRequired.sort((a, b) => a.hectorOrder - b.hectorOrder);
         }
         
-        const requiredOutput = sortedRequired
-            .map(unit => createCharacterBox(unit, actualRoute))
-            .join("");
+        const requiredOutput = `
+            <div class="characterGrid">
+                ${sortedRequired
+                    .map(unit => createCharacterBox(unit, actualRoute))
+                    .join("")}
+            </div>
+        `;
         
-        const randomOutput = selected
-            .map(unit => createCharacterBox(unit, actualRoute))
-            .join("");
+        const randomOutput = `
+            <div class="characterGrid">
+                ${selected
+                    .map(unit => createCharacterBox(unit, actualRoute))
+                    .join("")}
+            </div>
+        `;
         
         document.getElementById("result").innerHTML = `
             ${routeText ? `<strong>${routeText}</strong><br><br>` : ""}
