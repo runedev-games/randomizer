@@ -1,7 +1,7 @@
     <!DOCTYPE html>
 <html>
 <head>
-    <title>#24 Fire Emblem: The Blazing Blade - Army Randomizer</title>
+    <title>#25 Fire Emblem: The Blazing Blade - Army Randomizer</title>
     <style>
         body {
             color: white;
@@ -72,6 +72,16 @@
         align-items: center;
         gap: 15px;
         border-radius: 10px;
+
+        .characterPortraitPair {
+        display: flex;
+        gap: 5px;
+}
+
+.characterPortraitPair .characterPortrait {
+    width: 55px;
+    height: 80px;
+}
 }
     </style>
 </head>
@@ -387,17 +397,23 @@
                 
             },
             {
-                name: "Wallace", 
-                image: "images/fe7/FE7_Wallace.png",
-                recruitmentLynEliwood: "Chapter 9",
-                recruitmentLynHector: "Chapter 9",
+                name: "Wallace / Geitz", 
+                images: [
+                    "images/fe7/FE7_Wallace.png",
+                    "images/fe7/FE7_Geitz.png"
+                ],
+                recruitmentLynEliwood: "Chapter 9 / Chapter 23",
+                recruitmentLynHector: "Chapter 9 / Chapter 24",
                 recruitmentEliwood: "Chapter 23",
                 recruitmentHector: "Chapter 24",
                 lynEliwoodOrder: 9.0,
                 lynHectorOrder: 9.0,
                 eliwoodOrder: 23.0,
                 hectorOrder: 24.0,
-                startingClass: "Knight",
+                startingClasses: [
+                    "Knight",
+                    "Warrior"
+                ],
                 automatic: "True",
                 promotions: "General",
                 tags: ["SwordPool", "SwordPoolRec", "LancePool", "LancePoolRec"],
@@ -659,23 +675,6 @@
                 
             },
             {
-                name: "Geitz", 
-                image: "images/fe7/FE7_Geitz.png",
-                recruitmentLynEliwood: "Chapter 23",
-                recruitmentLynHector: "Chapter 24",
-                recruitmentEliwood: "Chapter 23",
-                recruitmentHector: "Chapter 24",
-                lynEliwoodOrder: 23.0,
-                lynHectorOrder: 24.0,
-                eliwoodOrder: 23.0,
-                hectorOrder: 24.0,
-                startingClass: "Warrior",
-                automatic: "True",
-                promotions: "None",
-                tags: ["SwordPool", "SwordPoolRec", "LancePool", "LancePoolRec"],
-                
-            },
-            {
                 name: "Farina", 
                 image: "images/fe7/FE7_Farina.png",
                 // recruitmentLynEliwood: "Chapter 23",
@@ -727,34 +726,23 @@
                 
             },
             {
-                name: "Karel", 
-                image: "images/fe7/FE7_Karel.png",
-                recruitmentLynEliwood: "Chapter 26",
+                name: "Karel / Harken", 
+                images: [
+                    "images/fe7/FE7_Karel.png",
+                    "images/fe7/FE7_Harken.png"
+                ],
+                recruitmentLynEliwood: "Chapter 25",
                 recruitmentLynHector: "Chapter 27",
-                recruitmentEliwood: "Chapter 26",
+                recruitmentEliwood: "Chapter 25",
                 recruitmentHector: "Chapter 27",
-                lynEliwoodOrder: 26.0,
+                lynEliwoodOrder: 25.0,
                 lynHectorOrder: 27.0,
-                eliwoodOrder: 26.0,
+                eliwoodOrder: 25.0,
                 hectorOrder: 27.0,
-                startingClass: "Swordmaster",
-                automatic: "True",
-                promotions: "None",
-                tags: ["SwordPool", "SwordPoolRec", "LancePool", "LancePoolRec"],
-                
-            },
-            {
-                name: "Harken", 
-                image: "images/fe7/FE7_Harken.png",
-                recruitmentLynEliwood: "Chapter 26",
-                recruitmentLynHector: "Chapter 27",
-                recruitmentEliwood: "Chapter 26",
-                recruitmentHector: "Chapter 27",
-                lynEliwoodOrder: 26.0,
-                lynHectorOrder: 27.0,
-                eliwoodOrder: 26.0,
-                hectorOrder: 27.0,
-                startingClass: "Hero",
+                startingClasses: [
+                    "Swordmaster",
+                    "Hero"
+                ],
                 automatic: "True",
                 promotions: "None",
                 tags: ["SwordPool", "SwordPoolRec", "LancePool", "LancePoolRec"],
@@ -878,12 +866,26 @@
         
             return `
                 <div class="${boxClass}">
-                    <img class="characterPortrait" src="${unit.image}" alt="${unit.name}">
+                    ${unit.images
+                        ? `
+                            <div class="characterPortraitPair">
+                                <img class="characterPortrait" src="${unit.images[0]}" alt="${unit.name}">
+                                <img class="characterPortrait" src="${unit.images[1]}" alt="${unit.name}">
+                            </div>
+                          `
+                        : `
+                            <img class="characterPortrait" src="${unit.image}" alt="${unit.name}">
+                          `
+                    }
                     
                     <div class="characterInfo">
                         <strong>${unit.name}</strong><br>
                         - Recruited In: ${chapter}<br>
-                        - Starting Class: ${unit.startingClass}
+                        - Starting Class: ${
+                            unit.startingClasses
+                                ? unit.startingClasses.join(" / ")
+                                : unit.startingClass
+                        }
                     </div>
                 </div>
             `;
