@@ -1,7 +1,7 @@
     <!DOCTYPE html>
 <html>
 <head>
-    <title>#27 Fire Emblem: The Blazing Blade - Army Randomizer</title>
+    <title>#28 Fire Emblem: The Blazing Blade - Army Randomizer</title>
     <style>
         body {
             color: white;
@@ -917,29 +917,6 @@
             `;
         }
 
-        function populateBanChoices() {
-            const banSelects = [
-                document.getElementById("ban1"),
-                document.getElementById("ban2"),
-                document.getElementById("ban3")
-            ];
-        
-            const banPool = blazingBladeAll.filter(unit => !unit.required);
-        
-            banSelects.forEach(select => {
-                select.innerHTML = '<option value="">No Ban</option>';
-        
-                banPool.forEach(unit => {
-                    const option = document.createElement("option");
-                    option.value = unit.name;
-                    option.textContent = unit.name;
-                    select.appendChild(option);
-                });
-            });
-        }
-
-        populateBanChoices();
-
         function updateBanChoices() {
             const route = document.getElementById("routeSelect").value;
         
@@ -958,7 +935,6 @@
                 document.getElementById("ban3")
             ];
         
-            // Remember current selections
             const currentSelections = banSelects.map(select => select.value);
         
             banSelects.forEach((select, index) => {
@@ -967,7 +943,6 @@
                 select.innerHTML = '<option value="">No Ban</option>';
         
                 banPool.forEach(unit => {
-                    // Don't show characters already selected in another ban box
                     const alreadySelectedElsewhere = currentSelections.some(
                         (name, otherIndex) =>
                             otherIndex !== index && name === unit.name
@@ -1009,10 +984,6 @@
             let routeText = "";
             const unpromotedOnly =
                 document.getElementById("unpromotedOnly").checked;
-            // const excludeMarcus =
-            //     document.getElementById("excludeMarcus").checked;
-            // const excludeKarla =
-            //    document.getElementById("excludeKarla").checked;
             // const guaranteeLegends =
                 // document.getElementById("guaranteeLegends").checked;
             
@@ -1049,17 +1020,6 @@
                 );
             }
             
-            // if (excludeMarcus) {
-            //    pool = pool.filter(
-            //        unit => unit.name !== "Marcus"
-            //    );
-            // }
-
-            // if (excludeKarla) {
-            //    pool = pool.filter(
-            //        unit => unit.name !== "Karla"
-            //    );
-            // }
 
             // Remove Hector-exclusive characters from Eliwood routes
             if (actualRoute === "lynEliwoodRoute" || actualRoute === "eliwoodRoute") {
