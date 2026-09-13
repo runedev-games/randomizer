@@ -1,7 +1,7 @@
     <!DOCTYPE html>
 <html>
 <head>
-    <title>#30 Fire Emblem: The Blazing Blade - Army Randomizer</title>
+    <title>#31 Fire Emblem: The Blazing Blade - Army Randomizer</title>
     <style>
         body {
             color: white;
@@ -110,6 +110,21 @@
             font-size: 12px;
             color: #cccccc;
         }
+
+        .optionDescription {
+            margin-top: 5px;
+            margin-bottom: 10px;
+            color: #dddddd;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+        
+        .optionNote {
+            margin-top: -5px;
+            margin-bottom: 10px;
+            color: #cccccc;
+            font-size: 13px;
+        }
             
 }
     </style>
@@ -119,9 +134,27 @@
     <div class="header">
         <img src="images/fe7/TitleScreen.png" class="boxArt">
         <h1>Fire Emblem: The Blazing Blade - Army Randomizer</h1>
+
+        <p>
+            Fire Emblem: The Blazing Blade's final chapter allows you to bring in 5 required units and 7 units of your choosing, up to a maximum of 12 total units. This randomizer randomly selects these 7 units based on your choice of route and other preferences you may have.
+        </p>
+        
+        <p>
+            <strong>Note:</strong><br>
+            There are two pairs of units that are recruitable based on decisions that are less player-oriented, so they are paired together regardless of who you are able to recruit. (Wallace/Geitz &amp; Karel/Harken)
+        </p>
     </div>
     
-    <label for="routeSelect">Choose Route:</label>
+    <label for="routeSelect"><strong>Choose Route:</strong></label>
+    
+    <p class="optionDescription">
+        This option chooses whose routes you will follow based on player decision or randomization, provided you have beaten the game an appropriate number of times.
+    </p>
+    
+    <p class="optionDescription">
+        For example, on a 2nd playthrough onward, Lyn's Tale can be skipped and the player will begin at Chapter 11.
+    </p>
+    
     <select id="routeSelect">
         <option value="lynEliwoodRoute">Lyn's Tale + Eliwood's Tale</option>
         <option value="lynHectorRoute">Lyn's Tale + Hector's Tale</option>
@@ -138,10 +171,22 @@
         Unpromoted Only?
     </label>
 
+        <p class="optionDescription">
+            This option selects units that begin in a class that can change class using an appropriate promotion item, and excludes units like Marcus who begin as a promoted Paladin class.
+        </p>
+        
+        <p class="optionNote">
+            <em>*Wallace / Geitz is considered a promoted unit for this purpose.</em>
+        </p>
+
     <br><br>
 
     <div class="banSection">
         <strong>Ban 3 Units:</strong>
+
+        <p class="optionDescription">
+            These options will remove the following unit(s) from the randomization pool, based on your preferences and for your convenience.
+        </p>
     
         <div class="banChoices">
             <select id="ban1">
